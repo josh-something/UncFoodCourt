@@ -2393,6 +2393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026528940}
   - component: {fileID: 1026528939}
+  - component: {fileID: 1026528941}
   m_Layer: 0
   m_Name: Stall 1
   m_TagString: Untagged
@@ -2470,6 +2471,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1026528941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026528938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e753a05c623b0f149805a1d056f34e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInStock: 0
+  itemPrice: 0
+  stalltype: {fileID: 11400000, guid: 2532ce8a6bd1c5b41824d1c93a805516, type: 2}
 --- !u!1 &1082460768
 GameObject:
   m_ObjectHideFlags: 0
