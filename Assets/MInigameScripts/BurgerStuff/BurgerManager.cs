@@ -17,6 +17,12 @@ public class BurgerManager : MonoBehaviour
             Destroy(gameObject);
     }
     
+
+    public void UpdateText()
+    {
+        ChangePlacedText("Placed: ");
+        ChangeCenteredText("Centered: ");
+    }
     public void ChangePlacedText(String txtToEnter)
     {
         burgerPlacedTxt.text = txtToEnter + placed;

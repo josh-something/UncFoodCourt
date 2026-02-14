@@ -22,14 +22,16 @@ public class Burger : MonoBehaviour
     {
     if (transform.position.x >=minX && transform.position.x <=maxX)
             {   Debug.Log("Burger Centerd");
-                if(scoreGiven >= maxScore)
-                    BurgerManager.instance.centered+=scoreGiven;            
+                if(scoreGiven < maxScore){
+                    scoreGiven++;
+                    BurgerManager.instance.centered+=scoreGiven;}    
                 BurgerManager.instance.ChangeCenteredText("Centered: ");
             }
         else
         {
-            if (scoreGiven <= minScore)
-                BurgerManager.instance.centered-=scoreGiven;
+            if (scoreGiven > minScore){
+                scoreGiven--;
+                BurgerManager.instance.centered-=1;}
             BurgerManager.instance.ChangeCenteredText("Centered: ");
         }  
     }
