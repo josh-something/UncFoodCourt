@@ -1,17 +1,21 @@
-using Unity.VisualScripting;
+using System;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
+    public static event Action<float> OnCoinChanged;
+    public static event Action<float> OnGoldBarsChanged;
+
     public int Energy
     {
         get { return Energy; }
         set
         {
-            if (value >= maxEnergy)
+            if (value >= _maxEnergy)
             {
-                Energy = maxEnergy;
+                Energy = _maxEnergy;
             }
             else
             {
@@ -19,22 +23,49 @@ public class StatsManager : MonoBehaviour
             }
         }
     }
-    private int maxEnergy = 10;
+
+    private int _maxEnergy = 10;
+
+    
+    
+    
     public float coins;
+    private float _oldCoins;
     public float goldBars;
+    private float _oldGoldBars;
+
+    private void Start()
+    {
+        _oldCoins = coins;
+        _oldGoldBars = goldBars;
+    }
+
+    private void Update()
+    {
+        if (!Mathf.Approximately(_oldCoins, coins))
+        {
+            OnCoinChanged?.Invoke(coins);
+            _oldCoins = coins;
+        }
+
+        if (!Mathf.Approximately(_oldGoldBars, goldBars))
+        {
+            OnGoldBarsChanged?.Invoke(goldBars);
+            _oldGoldBars = goldBars;
+        }
+    }
+    
+    private void Awake()
+    {
+        CreateSingleton();
+    }
 
     public void AddOverflowEnergy(int amount)
     {
         Energy += amount;
     }
 
-    private void Awake()
-    {
-        CreateSingleton();
-    }
-    
-
-    void CreateSingleton()
+    private void CreateSingleton()
     {
         if (Instance == null)
             Instance = this;
