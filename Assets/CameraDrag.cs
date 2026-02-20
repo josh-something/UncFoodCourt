@@ -5,6 +5,9 @@ public class CameraDrag : MonoBehaviour
 {
     #region Variables
 
+    private bool _inFocus = true;
+    public GameObject shadedBackgroundGameObj;
+
     private Vector3 _origin;
     private Vector3 _difference;
 
@@ -39,13 +42,14 @@ public class CameraDrag : MonoBehaviour
     
     public void OnDrag(InputAction.CallbackContext ctx)
     {
+        _inFocus = !shadedBackgroundGameObj.activeSelf;
         if (ctx.started) _origin = GetMousePosition;
         _isDragging = ctx.started || ctx.performed;
     }
 
     private void LateUpdate()
     {
-        if (!_isDragging) return;
+        if (!_isDragging || !_inFocus) return;
         
         _difference = GetMousePosition - transform.position;
         
