@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 116571cf4020fe44491355498bb2b8bf, type: 3}
-  m_Name: Burger Stall
+  m_Name: Rice
   m_EditorClassIdentifier: 
-  StallImage: {fileID: 2800000, guid: bfd7f2d02bcb369458540a3a6e2cea7f, type: 3}
-  StallName: Hour Burger
-  StallDescription: 'My burger, Your Burger, Hour Burger
+  StallImage: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+  StallName: Rice Cylinder
+  StallDescription: '"Mura na,
+
+    Masarap pa,
+
+    Nakakainis lang kainin"
 
 '
-  StallPrice: 400
+  StallPrice: 1000
