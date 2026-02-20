@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e753a05c623b0f149805a1d056f34e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInStock: 0
-  itemPrice: 0
+  isInStock: 1
+  itemPrice: 30
   stalltype: {fileID: 0}
   isEmpty: 1
   stallPopup: {fileID: 2901002552700243390}
