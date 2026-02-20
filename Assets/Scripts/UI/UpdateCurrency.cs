@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,14 +10,14 @@ public class UpdateCurrency : MonoBehaviour
         StatsManager.OnCoinChanged += UpdateValue;
     }
 
-    private void Start()
-    {
-        UpdateValue(StatsManager.Instance.coins);
-    }
-
     private void OnDisable()
     {
         StatsManager.OnCoinChanged -= UpdateValue;
+    }
+    
+    private void Start()
+    {
+        UpdateValue(StatsManager.Instance.coins);
     }
 
     private void UpdateValue(float value)

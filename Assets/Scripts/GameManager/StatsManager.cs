@@ -8,7 +8,7 @@ public class StatsManager : MonoBehaviour
     public static event Action<float> OnGoldBarsChanged;
     public static event Action<float,float> OnEnergyChanged;
 
-    private int _energy;
+    [SerializeField] private int _energy;
     public int Energy
     {
         get => _energy;
