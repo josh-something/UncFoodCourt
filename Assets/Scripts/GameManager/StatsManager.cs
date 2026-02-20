@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour
@@ -7,20 +6,23 @@ public class StatsManager : MonoBehaviour
     public static StatsManager Instance { get; private set; }
     public static event Action<float> OnCoinChanged;
     public static event Action<float> OnGoldBarsChanged;
+    public static event Action<float,float> OnEnergyChanged;
 
+    private int _energy;
     public int Energy
     {
-        get { return Energy; }
+        get => _energy;
         set
         {
             if (value >= _maxEnergy)
             {
-                Energy = _maxEnergy;
+                _energy = _maxEnergy;
             }
             else
             {
-                Energy = value;
+                _energy = value;
             }
+            OnEnergyChanged?.Invoke(Energy, _maxEnergy);
         }
     }
 
