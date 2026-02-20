@@ -22,7 +22,7 @@ public class StatsManager : MonoBehaviour
             {
                 _energy = value;
             }
-            OnEnergyChanged?.Invoke(Energy, _maxEnergy);
+            OnEnergyChanged?.Invoke(_energy, _maxEnergy);
         }
     }
 
@@ -64,7 +64,8 @@ public class StatsManager : MonoBehaviour
 
     public void AddOverflowEnergy(int amount)
     {
-        Energy += amount;
+        _energy += amount;
+        OnEnergyChanged?.Invoke(_energy, _maxEnergy);
     }
 
     private void CreateSingleton()
