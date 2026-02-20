@@ -4,22 +4,23 @@ using UnityEngine.UI;
 public class PopularityManager : MonoBehaviour
 {
     [Range(0f, 100f)]
-    public float populartiyPercentage = 0f;
+    public float popularityPercentage = 0f;
 
-    public Slider popularitySlider;
+    //public Slider popularitySlider;
 
-    public int PopulartiyStars()
+    public int PopularityStars()
     {
-        int stars = Mathf.FloorToInt(populartiyPercentage / 20f);
+        int stars = Mathf.FloorToInt(popularityPercentage / 20f);
         return Mathf.Clamp(stars, 0, 5);
     }
 
     public void AddPopularity(float Amount)
     {
-        populartiyPercentage += Amount;
-        populartiyPercentage = Mathf.Clamp(populartiyPercentage, 0f, 100f);
+        popularityPercentage += Amount;
+        Debug.Log("Amount received: " + Amount);
+        popularityPercentage = Mathf.Clamp(popularityPercentage, 0f, 100f);
 
-        Debug.Log($"Popularity increased by: {populartiyPercentage}%, (Stars = {PopulartiyStars()}");
+        Debug.Log($"Popularity increased by: {popularityPercentage}%, (Stars = {PopularityStars()})");
     }
 
 
@@ -31,13 +32,13 @@ public class PopularityManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //popularity amount placeholderZ
-        if (Input.GetKeyUp(KeyCode.Escape))
+        //popularity amount placeholder
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             AddPopularity(5);
         }
 
         //Slider
-        populartiyPercentage = popularitySlider.value;
+        //popularityPercentage = popularitySlider.value;
     }
 }
