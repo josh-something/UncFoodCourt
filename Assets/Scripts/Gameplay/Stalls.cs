@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Stalls : MonoBehaviour, IPointerClickHandler
 {
     public bool isInStock;
+    private int _stock;
     public float itemPrice = 30;
     public StallDisplayPanelInfo stalltype;
     public bool isEmpty = true;
@@ -23,6 +24,8 @@ public class Stalls : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Stall Clicked");
+        if (isEmpty) return;
+        // Show info Panel
+        Debug.Log($"Stall ({stalltype.name}) Clicked");
     }
 }
