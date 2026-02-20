@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StallManager : MonoBehaviour
 {
-    public StallsData stallsData;
     public List<Stalls> stalls;
 
     public void AddStall(StallDisplayPanelInfo info)
