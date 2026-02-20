@@ -21,8 +21,8 @@ public class UpdateCurrency : MonoBehaviour
         StatsManager.OnCoinChanged -= UpdateValue;
     }
 
-    public void UpdateValue(float value)
+    private void UpdateValue(float value)
     {
-        currencyText.text = string.Concat("$", value.ToString("N0"));
+        currencyText.text = value.ToString("N0");
     }
 }
