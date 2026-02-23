@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 116571cf4020fe44491355498bb2b8bf, type: 3}
-  m_Name: Burger Stall
+  m_Name: Sundae
   m_EditorClassIdentifier: 
-  StallImage: {fileID: 2800000, guid: bfd7f2d02bcb369458540a3a6e2cea7f, type: 3}
-  StallName: Burger Stall
-  StallDescription: The natural world of whimsy
-  StallPrice: 401
+  StallImage: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+  StallName: MarvelouSundae
+  StallDescription: MARVELOUS!
+  StallPrice: 5000

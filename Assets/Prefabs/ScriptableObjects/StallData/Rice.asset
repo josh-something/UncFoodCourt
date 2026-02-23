@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 116571cf4020fe44491355498bb2b8bf, type: 3}
-  m_Name: Stall 2
+  m_Name: Rice
   m_EditorClassIdentifier: 
   StallImage: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
-  StallName: Another Stall
-  StallDescription: Another Test Stall
-  StallPrice: 50231
+  StallName: Rice Cylinder
+  StallDescription: '"Mura na,
+
+    Masarap pa,
+
+    Nakakainis lang kainin"
+
+'
+  StallPrice: 1000

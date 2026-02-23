@@ -1,40 +1,74 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
+    public static event Action<float> OnCoinChanged;
+    public static event Action<float> OnGoldBarsChanged;
+    public static event Action<float,float> OnEnergyChanged;
+
+    [SerializeField] private int _energy;
     public int Energy
     {
-        get { return Energy; }
+        get => _energy;
         set
         {
-            if (value >= maxEnergy)
+            if (value >= _maxEnergy)
             {
-                Energy = maxEnergy;
+                _energy = _maxEnergy;
             }
             else
             {
-                Energy = value;
+                _energy = value;
             }
+            OnEnergyChanged?.Invoke(_energy, _maxEnergy);
         }
     }
-    private int maxEnergy = 10;
-    public float coins;
-    public float goldBars;
 
-    public void AddOverflowEnergy(int amount)
+    private int _maxEnergy = 10;
+
+    
+    
+    
+    public float coins;
+    private float _oldCoins;
+    public float goldBars;
+    private float _oldGoldBars;
+
+    private void Start()
     {
-        Energy += amount;
+        _oldCoins = coins;
+        _oldGoldBars = goldBars;
     }
 
+    private void Update()
+    {
+        if (!Mathf.Approximately(_oldCoins, coins))
+        {
+            OnCoinChanged?.Invoke(coins);
+            _oldCoins = coins;
+        }
+
+        if (!Mathf.Approximately(_oldGoldBars, goldBars))
+        {
+            OnGoldBarsChanged?.Invoke(goldBars);
+            _oldGoldBars = goldBars;
+        }
+    }
+    
     private void Awake()
     {
         CreateSingleton();
     }
-    
 
-    void CreateSingleton()
+    public void AddOverflowEnergy(int amount)
+    {
+        _energy += amount;
+        OnEnergyChanged?.Invoke(_energy, _maxEnergy);
+    }
+
+    private void CreateSingleton()
     {
         if (Instance == null)
             Instance = this;
