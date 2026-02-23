@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering;
 
 public class CustomerSpawner : MonoBehaviour
 {
@@ -10,19 +11,20 @@ public class CustomerSpawner : MonoBehaviour
 
     public int currentCustomers = 0;
 
+    private bool willBuy;
 
 
     private Coroutine spawnRoutine;
 
     void Start()
     {
-        popularityManager = FindObjectOfType<PopularityManager>();
-        spawnRoutine = StartCoroutine(SpawnRoutine());
+        popularityManager = FindFirstObjectByType<PopularityManager>();
+        spawnRoutine = StartCoroutine(SpawnRoutine()); //customer spawner, starts immediately
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.C))
+        if (Input.GetKeyUp(KeyCode.C)) //testing placeholder
         {
             SpawnCustomer();
         }
@@ -46,14 +48,18 @@ public class CustomerSpawner : MonoBehaviour
             }
 
             yield return new WaitForSeconds(spawnInterval);
+
+            Debug.Log($"Current Customers: {currentCustomers}");
         }
     }
 
-    void SpawnCustomer()
+    void SpawnCustomer() 
     {
-        Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
-        currentCustomers++;
+        GameObject customerObject = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity); //prefab spawn at spawnPoint game object
+        CustomerManager.Instance.NewCustomerArrived(customerObject); //calls and notifies customer manager script that a cusomter is active in the scene
+        currentCustomers++; //add to customer count
     }
+
 
     int GetCustomerCount(int stars)
     {
