@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,7 +6,10 @@ public class PopularityManager : MonoBehaviour
 {
     [Range(0f, 100f)]
     public float popularityPercentage = 0f;
+    [Range(0f, 100f)]
+    private float _oldpopularityPercentage = 0f;
 
+    public static event Action<float> OnPopularityChanged;
     //public Slider popularitySlider;
 
     public int PopularityStars()
@@ -26,7 +30,7 @@ public class PopularityManager : MonoBehaviour
 
     void Start()
     {
-        
+        _oldpopularityPercentage = popularityPercentage;
     }
 
     // Update is called once per frame
@@ -37,8 +41,21 @@ public class PopularityManager : MonoBehaviour
         {
             AddPopularity(5);
         }
+        
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            AddPopularity(-5);
+        }
 
+        EvaluatePopularityChange();
         //Slider
         //popularityPercentage = popularitySlider.value;
+    }
+
+    private void EvaluatePopularityChange()
+    {
+        if (Mathf.Approximately(_oldpopularityPercentage, popularityPercentage)) return;
+        _oldpopularityPercentage = popularityPercentage;
+        OnPopularityChanged?.Invoke(popularityPercentage);
     }
 }

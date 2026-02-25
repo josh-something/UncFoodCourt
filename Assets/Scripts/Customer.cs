@@ -24,6 +24,7 @@ public class Customer : MonoBehaviour
         // Logic for buying food
         Debug.Log("Customer bought food!");
         // Add coins to currency manager, update stats, etc.
+        StatsManager.Instance.coins += 50;
     }
 
     public void LeaveWithoutBuying()
