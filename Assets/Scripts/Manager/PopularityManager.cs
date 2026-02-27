@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PopularityManager : MonoBehaviour
 {
@@ -37,15 +38,31 @@ public class PopularityManager : MonoBehaviour
     void Update()
     {
         //popularity amount placeholder
-        if (Input.GetKeyUp(KeyCode.Q))
+        // if (Input.GetKeyUp(KeyCode.Q)) 
+        // {
+        //     Debug.Log("Popularity increased by: " + popularityPercentage);
+        //     AddPopularity(5);
+        // }
+
+        // if (Input.GetKeyUp(KeyCode.R))
+        // {
+        //     Debug.Log("Popularity decreased by: " + popularityPercentage);
+        //     AddPopularity(-5);
+        // }
+
+        if (Keyboard.current.qKey.wasReleasedThisFrame)
         {
+            Debug.Log("Popularity increased by: " + popularityPercentage);
             AddPopularity(5);
         }
-        
-        if (Input.GetKeyUp(KeyCode.R))
+
+
+        if (Keyboard.current.rKey.wasReleasedThisFrame)
         {
+            Debug.Log("Popularity decreased by: " + popularityPercentage);
             AddPopularity(-5);
         }
+
 
         EvaluatePopularityChange();
         //Slider
