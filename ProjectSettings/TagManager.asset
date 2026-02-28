@@ -8,6 +8,7 @@ TagManager:
   - BurgerZone
   - KillBox
   - Burger
+  - MiniGameCam
   layers:
   - Default
   - TransparentFX
