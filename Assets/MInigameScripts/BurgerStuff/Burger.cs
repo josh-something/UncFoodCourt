@@ -17,6 +17,11 @@ public class Burger : MonoBehaviour
             BurgerManager.instance.placed++;
             BurgerManager.instance.ChangePlacedText("Placed: ");
         }
+        if (other.CompareTag("KillBox"))
+        {
+            BurgerManager.instance.missed++;
+            Destroy(gameObject);
+        }
     }
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -36,7 +41,9 @@ public class Burger : MonoBehaviour
         }  
     }
     void OnTriggerExit2D(Collider2D other) {
+        
             BurgerManager.instance.placed--;
+            BurgerManager.instance.UpdateText();
         }
 
 }
