@@ -9,6 +9,21 @@ public class StatsManager : MonoBehaviour
     public static event Action<float,float> OnEnergyChanged;
 
     [SerializeField] private int _energy;
+
+    private int _maxEnergy = 10;
+
+    
+    
+    
+    public float coins;
+    public float goldBars;
+
+
+    private float _oldCoins;
+    private float _oldGoldBars;
+
+
+
     public int Energy
     {
         get => _energy;
@@ -26,15 +41,7 @@ public class StatsManager : MonoBehaviour
         }
     }
 
-    private int _maxEnergy = 10;
 
-    
-    
-    
-    public float coins;
-    private float _oldCoins;
-    public float goldBars;
-    private float _oldGoldBars;
 
     private void Start()
     {
@@ -55,6 +62,18 @@ public class StatsManager : MonoBehaviour
             OnGoldBarsChanged?.Invoke(goldBars);
             _oldGoldBars = goldBars;
         }
+    }
+
+
+    public bool TrySpendCoins(float amount)
+    {
+        if (coins >= amount)
+        {
+            coins -= amount;
+            return true;
+        }
+
+        return false;
     }
     
     private void Awake()

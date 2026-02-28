@@ -7,7 +7,7 @@ public class StallPanelItems : MonoBehaviour
 {
     public StallDisplayPanelInfo panelInfo;
     public StallManager stallManager;
-    public RawImage stallImage;
+    public Image stallImage;
     public TMP_Text stallName;
     public TMP_Text stallDescription;
     public TMP_Text stallPrice;
@@ -17,7 +17,7 @@ public class StallPanelItems : MonoBehaviour
     {
         if (panelInfo == null)
             return;
-        stallImage.texture = panelInfo.StallImage;
+        stallImage.sprite = panelInfo.StallImage;
         stallName.text = panelInfo.StallName;
         stallDescription.text = panelInfo.StallDescription;
         stallPrice.text = string.Concat("Price: $", panelInfo.StallPrice.ToString("N0"));
