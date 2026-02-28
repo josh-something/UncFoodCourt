@@ -906,7 +906,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4d76ff9fb096742a6f3bfddb8240fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burgerParts: []
+  burgerParts:
+  - {fileID: 1776615891}
+  - {fileID: 581415856}
+  - {fileID: 667813825}
+  - {fileID: 355932255}
+  - {fileID: 1948768225}
+  - {fileID: 240076167}
   spawnPoint: {fileID: 1169344788}
 --- !u!1 &581415856
 GameObject:

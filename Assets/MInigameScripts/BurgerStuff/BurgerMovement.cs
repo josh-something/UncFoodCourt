@@ -12,12 +12,14 @@ public class BurgerMovement : MonoBehaviour
 
     private bool canReceiveInput = true; // NEW
 
+    // manages the burger's movements and how you control it (for individual parts)
+
     void Start()
 {
     Camera mainCamera = Camera.main;
 
-    float distance = Mathf.Abs(mainCamera.transform.position.z);
-    screenBounds = mainCamera.ScreenToWorldPoint(
+        float distance = Mathf.Abs(mainCamera.transform.position.z);
+        screenBounds = mainCamera.ScreenToWorldPoint(
         new Vector3(Screen.width, Screen.height, distance)
     );
 }
