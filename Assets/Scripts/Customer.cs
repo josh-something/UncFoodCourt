@@ -25,6 +25,7 @@ public class Customer : MonoBehaviour
         Debug.Log("Customer bought food!");
         
         StatsManager.Instance.coins += 50;
+        Destroy(gameObject, 2f);
     }
 
     public void LeaveWithoutBuying()
