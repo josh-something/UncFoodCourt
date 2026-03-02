@@ -4,54 +4,66 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Unlock Panel")]
-    [SerializeField] private GameObject unlockPanel;
-    [SerializeField] private TMP_Text stallPriceText;
-    [SerializeField] private Button unlockButton;
+    // public static UIManager Instance;
 
-    public bool stallBought;
+    // [Header("Panels")]
+    // public GameObject unlockPanel;
+    // public GameObject assignPanel;
 
-    public static UIManager Instance;
+    // [Header("Buy UI")]
+    // public TMP_Text costText;
 
-    private StallArea currentStall;
+    // // public TMP_Text stallPriceText;
+    // // public Button unlockButton;
 
-    private void Awake()
-    {
-        Instance = this;
-        unlockPanel.SetActive(false);
-    }
+    // // public bool stallBought;
 
-    public void OpenUnlockPanel(StallArea stall)
-    {
-        currentStall = stall;
+    // private StallArea currentStall;
 
-        var info = stall.stallInfo;
-        stallPriceText.text = "Price: " + info.StallPrice;
+    // private void Awake()
+    // {
+    //     Instance = this;
+    // }
 
-        unlockPanel.SetActive(true);
-    }
+    // public void OpenUnlockPanel(StallArea stall)
+    // {
+    //     currentStall = stall;
+    //     costText.text = "Price: " + stall.unlockCost;
+    //     unlockPanel.SetActive(true);
+    // }
 
-    public void ConfirmUnlock()
-    {
-        if (currentStall == null) return;
+    // public void ConfirmPurchase()
+    // {
+    //     if (StatsManager.Instance.coins >= currentStall.unlockCost)
+    //     {
+    //         StatsManager.Instance.TrySpendCoins(currentStall.unlockCost);
+    //         currentStall.UnlockStall();
+    //         unlockPanel.SetActive(false);
+    //     }
+    // }
 
-        if (StatsManager.Instance.TrySpendCoins(currentStall.stallInfo.StallPrice))
-        {
-            currentStall.UnlockStall();
-            ClosePanel();
-        }
-        else
-        {
-            Debug.Log("Not enough coins!");
-            ClosePanel();
+    // public void OpenAssignPanel(StallArea stall)
+    // {
+    //     currentStall = stall;
+    //     assignPanel.SetActive(true);
+    // }
 
-        }
-    }
+    // public void AssignFood(StallFoodData food)
+    // {
+    //     currentStall.AssignFood(food);
+    //     assignPanel.SetActive(false);
+    // }
 
-    public void ClosePanel()
-    {
-        unlockPanel.SetActive(false);
-    }
+    // public void ClosePanel()
+    // {
+    //     unlockPanel.SetActive(false);
+    //     assignPanel.SetActive(false);
+    // }
 
+    // public void OpenStallPanel(StallFoodData food)
+    // {
+    //     // Implement stall panel opening logic here
+    //     Debug.Log("Opening stall panel for: " + food.stallFoodName);
+    // }
 
 }

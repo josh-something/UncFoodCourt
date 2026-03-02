@@ -1,53 +1,79 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class StallArea : MonoBehaviour
 {
-    public StallDisplayPanelInfo stallInfo;
+    public StallAreaData stallAreaData;
 
-    public bool isLocked = true;
+    public bool isUnlocked;
+    public StallFoodData assignedFood;
 
     [Header("Visuals")]
-    [SerializeField] private GameObject lockOverlay;
-    [SerializeField] private GameObject stallContent;
-    [SerializeField] private SpriteRenderer stallRenderer;
+    public GameObject lockOverlay;
+    public GameObject emptyStallVisual; 
+    public SpriteRenderer stallRenderer;
+
 
     private void Start()
     {
-        SetupStall();
+        LoadUnlockState();
         UpdateVisual();
     }
 
-     private void SetupStall()
-    {
-        if (stallInfo != null && stallRenderer != null)
-        {
-            stallRenderer.sprite = stallInfo.StallImage;
-        }
-    }
+    //  private void SetupStall()
+    // {
+    //     if (stallInfo != null && stallRenderer != null)
+    //     {
+    //         stallRenderer.sprite = stallInfo.StallImage;
+    //     }
+    // }
 
     private void OnMouseDown()
     {
-        if (isLocked)
+        if (!isUnlocked)
         {
-            UIManager.Instance.OpenUnlockPanel(this);
+            StallUIManager.Instance.OpenUnlockPanel(this);
+        }
+        else if (assignedFood == null)
+        {
+            StallUIManager.Instance.OpenFoodSelection(this);
+        }
+        else
+        {
+            Debug.Log("Stall already selling " + assignedFood.stallFoodName);
         }
     }
 
     public void UnlockStall()
     {
-        isLocked = false;
+        isUnlocked = true;
+        SaveUnlockState();
+        UpdateVisual();
+    }
+
+    public void AssignFood(StallFoodData food)
+    {
+        assignedFood = food;
+        stallRenderer.sprite = food.stallFoodImage;
         UpdateVisual();
     }
 
     private void UpdateVisual()
     {
-        if (lockOverlay != null)
-            lockOverlay.SetActive(isLocked);
-
-        if (stallContent != null)
-            stallContent.SetActive(!isLocked);
+        lockOverlay.SetActive(!isUnlocked);
+        emptyStallVisual.SetActive(isUnlocked && assignedFood == null);
     }
 
+    
+    void SaveUnlockState()
+    {
+        PlayerPrefs.SetInt(stallAreaData.stallID, 1);
+    }
 
+    void LoadUnlockState()
+    {
+        isUnlocked = PlayerPrefs.GetInt(stallAreaData.stallID, 0) == 1;
+    }
     
 }
