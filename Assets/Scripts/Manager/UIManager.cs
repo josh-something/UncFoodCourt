@@ -4,7 +4,24 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // public static UIManager Instance;
+    public static UIManager Instance;
+    [SerializeField] private GameObject BackgroundOverlay;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void OpenBackgroundOverlay()
+    {
+        BackgroundOverlay.SetActive(true);
+        //Time.deltaTime = 0;
+    }
+
+    public void CloseBackgroundOverlay()
+    {
+        BackgroundOverlay.SetActive(false);
+    }
 
     // [Header("Panels")]
     // public GameObject unlockPanel;

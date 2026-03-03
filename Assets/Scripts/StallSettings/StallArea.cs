@@ -21,13 +21,6 @@ public class StallArea : MonoBehaviour
         UpdateVisual();
     }
 
-    //  private void SetupStall()
-    // {
-    //     if (stallInfo != null && stallRenderer != null)
-    //     {
-    //         stallRenderer.sprite = stallInfo.StallImage;
-    //     }
-    // }
 
     private void OnMouseDown()
     {

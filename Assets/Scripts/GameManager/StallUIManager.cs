@@ -21,6 +21,7 @@ public class StallUIManager : MonoBehaviour
 
     public void OpenUnlockPanel(StallArea stall) //Locked Stall Clicked
     {
+        UIManager.Instance.OpenBackgroundOverlay();
         currentStall = stall;
         unlockText.text = "Price: " + stall.stallAreaData.unlockPrice.ToString("N0");
         unlockPanel.SetActive(true);
@@ -35,22 +36,33 @@ public class StallUIManager : MonoBehaviour
         }
 
         unlockPanel.SetActive(false);
+        UIManager.Instance.CloseBackgroundOverlay();
     }
 
-    public void CancelUnlock()
+    public void CancelUnlock() // Exit Buttone
     {
         unlockPanel.SetActive(false);
+        UIManager.Instance.CloseBackgroundOverlay();
     }    
 
     public void OpenFoodSelection(StallArea stall) //Unlocked but Empty Stall Clicked
     {
         currentStall = stall;
         foodPanel.SetActive(true);
+        UIManager.Instance.OpenBackgroundOverlay();
     }
 
     public void SelectFood(StallFoodData food) //Food Option Clicked
     {
         currentStall.AssignFood(food);
         foodPanel.SetActive(false);
+        UIManager.Instance.CloseBackgroundOverlay();
     }
+
+    public void CloseFoodSelection() //Exit Button Clicked
+    {
+        foodPanel.SetActive(false);
+        UIManager.Instance.CloseBackgroundOverlay();
+    }
+
 }
