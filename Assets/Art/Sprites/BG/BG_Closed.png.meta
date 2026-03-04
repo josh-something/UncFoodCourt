@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46b38d3a7f1e618438012db28ba9c816
+guid: 8b070a5d75c6756499db6c843a70bedf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -187105095926027218
-    second: StallPlaceholder_0
+      213: -1563991418532132200
+    second: BG_Closed_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StallPlaceholder_0
+      name: BG_Closed_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 201
-        height: 400
+        width: 256
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2ce9a518e4476df0800000000000000
-      internalID: -187105095926027218
+      spriteID: 89a02aa57169b4ae0800000000000000
+      internalID: -1563991418532132200
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StallPlaceholder_0: -187105095926027218
+      BG_Closed_0: -1563991418532132200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
