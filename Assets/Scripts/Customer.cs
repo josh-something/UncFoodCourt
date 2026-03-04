@@ -24,7 +24,7 @@ public class Customer : MonoBehaviour
         // Logic for buying food
         Debug.Log("Customer bought food!");
         
-        StatsManager.Instance.coins += 50;
+        //StatsManager.Instance.coins += 50;
         Destroy(gameObject, 2f);
     }
 

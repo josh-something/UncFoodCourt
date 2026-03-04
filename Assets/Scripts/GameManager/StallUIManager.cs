@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class StallUIManager : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class StallUIManager : MonoBehaviour
     [Header("Unlock UI")]
     public TMP_Text unlockText;
 
+    [Header("Assign Food UI")]
+    public Button[] foodButtons;   
+    public TMP_Text[] nameTexts;
+    public TMP_Text[] priceTexts;
+
+    public StallFoodData[] availableFoods;
+
+    private StallFoodData currentFood;
     private StallArea currentStall;
 
     public void Awake()
@@ -24,15 +33,22 @@ public class StallUIManager : MonoBehaviour
         UIManager.Instance.OpenBackgroundOverlay();
         currentStall = stall;
         unlockText.text = "Price: " + stall.stallAreaData.unlockPrice.ToString("N0");
-        unlockPanel.SetActive(true);
+        UIManager.Instance.OpenPanel(unlockPanel);
     }
 
     public void ConfirmUnlock() //Confirm Unlock Button Clicked
     {
-        if (StatsManager.Instance.coins >= currentStall.stallAreaData.unlockPrice)
+        float price = currentStall.stallAreaData.unlockPrice;
+
+        bool success = StatsManager.Instance.TrySpendCoins(price);
+
+        if (success)
         {
-            StatsManager.Instance.coins -= currentStall.stallAreaData.unlockPrice;
             currentStall.UnlockStall();
+        }
+        else
+        {
+            Debug.Log("Not enough coins!");
         }
 
         unlockPanel.SetActive(false);
@@ -42,27 +58,78 @@ public class StallUIManager : MonoBehaviour
     public void CancelUnlock() // Exit Buttone
     {
         unlockPanel.SetActive(false);
-        UIManager.Instance.CloseBackgroundOverlay();
+        UIManager.Instance.CloseCurrentPanel();
     }    
 
     public void OpenFoodSelection(StallArea stall) //Unlocked but Empty Stall Clicked
     {
         currentStall = stall;
-        foodPanel.SetActive(true);
-        UIManager.Instance.OpenBackgroundOverlay();
+        UIManager.Instance.OpenPanel(foodPanel);
+        // UIManager.Instance.OpenBackgroundOverlay();
+
+        RefreshFoodUI();
     }
 
     public void SelectFood(StallFoodData food) //Food Option Clicked
     {
-        currentStall.AssignFood(food);
-        foodPanel.SetActive(false);
-        UIManager.Instance.CloseBackgroundOverlay();
+        if (currentStall == null)
+        return;
+
+        if (StatsManager.Instance.IsFoodPurchased(food)) // Double-check if food is already purchased
+        {
+             Debug.Log("Food already purchased!");
+            return;
+        }
+
+        bool success = StatsManager.Instance.TrySpendCoins(food.unlockPrice); // Attempt to spend coins, returns false if not enough coins
+
+        if (!success)
+        {
+            Debug.Log("Not enough coins!");
+            return;
+        }
+
+        StatsManager.Instance.MarkFoodAsPurchased(food); // Mark food as purchased in stats manager
+        currentStall.AssignFood(food); // Update stall with new food
+        CloseFoodSelection();
     }
 
     public void CloseFoodSelection() //Exit Button Clicked
     {
-        foodPanel.SetActive(false);
-        UIManager.Instance.CloseBackgroundOverlay();
+        UIManager.Instance.CloseCurrentPanel();
+        // UIManager.Instance.CloseBackgroundOverlay();
+    }
+
+    void RefreshFoodUI() // Update the food selection UI based on available foods and player stats
+    {
+        for (int i = 0; i < availableFoods.Length; i++)
+        {
+            StallFoodData food = availableFoods[i];
+
+            nameTexts[i].text = food.stallFoodName;
+
+            bool alreadyPurchased = StatsManager.Instance.IsFoodPurchased(food);
+            bool notEnoughCoins = StatsManager.Instance.GetCoins() < food.unlockPrice;
+
+            if (alreadyPurchased)
+            {
+                priceTexts[i].text = "Purchased";
+                foodButtons[i].interactable = false;
+            }
+            else
+            {
+                priceTexts[i].text = "$" + food.unlockPrice.ToString("N0");
+                foodButtons[i].interactable = !notEnoughCoins;
+            }
+
+            int index = i;
+
+            foodButtons[i].onClick.RemoveAllListeners();
+            foodButtons[i].onClick.AddListener(() =>
+            {
+                SelectFood(availableFoods[index]);
+            });
+        }
     }
 
 }

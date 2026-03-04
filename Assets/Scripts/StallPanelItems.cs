@@ -21,7 +21,7 @@ public class StallPanelItems : MonoBehaviour
         stallName.text = panelInfo.StallName;
         stallDescription.text = panelInfo.StallDescription;
         stallPrice.text = string.Concat("Price: $", panelInfo.StallPrice.ToString("N0"));
-        buy.onClick.AddListener(BuyItem);
+        //buy.onClick.AddListener(BuyItem);
     }
 
     void Start()
@@ -29,16 +29,16 @@ public class StallPanelItems : MonoBehaviour
         stallManager = FindFirstObjectByType<StallManager>();
     }
 
-    void BuyItem()
-    {
-        if (StatsManager.Instance.coins < panelInfo.StallPrice)
-        {
-            Debug.Log("Not enough coins");
-        }
-        else
-        {
-            StatsManager.Instance.coins -= panelInfo.StallPrice;
-            stallManager.AddStall(panelInfo);
-        }
-    }
+    // void BuyItem()
+    // {
+    //     if (StatsManager.Instance.coins < panelInfo.StallPrice)
+    //     {
+    //         Debug.Log("Not enough coins");
+    //     }
+    //     else
+    //     {
+    //         StatsManager.Instance.coins -= panelInfo.StallPrice;
+    //         stallManager.AddStall(panelInfo);
+    //     }
+    // }
 }

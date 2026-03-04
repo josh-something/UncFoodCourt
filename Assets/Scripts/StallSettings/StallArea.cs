@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
-public class StallArea : MonoBehaviour
+public class StallArea : MonoBehaviour, IPointerClickHandler
 {
     public StallAreaData stallAreaData;
 
@@ -22,7 +23,23 @@ public class StallArea : MonoBehaviour
     }
 
 
-    private void OnMouseDown()
+    // private void OnMouseDown()
+    // {
+    //     if (!isUnlocked)
+    //     {
+    //         StallUIManager.Instance.OpenUnlockPanel(this);
+    //     }
+    //     else if (assignedFood == null)
+    //     {
+    //         StallUIManager.Instance.OpenFoodSelection(this);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Stall already selling " + assignedFood.stallFoodName);
+    //     }
+    // }
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!isUnlocked)
         {
@@ -37,6 +54,8 @@ public class StallArea : MonoBehaviour
             Debug.Log("Stall already selling " + assignedFood.stallFoodName);
         }
     }
+
+
 
     public void UnlockStall()
     {

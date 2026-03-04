@@ -1,99 +1,141 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
+
+    //EVENTS
     public static event Action<float> OnCoinChanged;
     public static event Action<float> OnGoldBarsChanged;
     public static event Action<float,float> OnEnergyChanged;
 
-    [SerializeField] private int _energy;
+    //CURRENCY
+    [SerializeField] private float coins;
+    [SerializeField] private float goldBars;
+    private float _previousCoins;
+    private float _previousGoldBars;
 
-    private int _maxEnergy = 10;
+    // ENERGY
+    [SerializeField] private int energy;
+    [SerializeField] private int maxEnergy = 10;
 
     
-    
-    
-    public float coins;
-    public float goldBars;
+    public HashSet<StallFoodData> purchasedFoods = new HashSet<StallFoodData>();
 
-
-    private float _oldCoins;
-    private float _oldGoldBars;
-
-
-
-    public int Energy
+     private void Awake()
     {
-        get => _energy;
-        set
+        if (Instance != null && Instance != this)
         {
-            if (value >= _maxEnergy)
-            {
-                _energy = _maxEnergy;
-            }
-            else
-            {
-                _energy = value;
-            }
-            OnEnergyChanged?.Invoke(_energy, _maxEnergy);
+            Destroy(gameObject);
+            return;
         }
-    }
 
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
 
     private void Start()
     {
-        _oldCoins = coins;
-        _oldGoldBars = goldBars;
+        _previousCoins = coins;
+        _previousGoldBars = goldBars;
+
+        OnCoinChanged?.Invoke(coins);
+        OnGoldBarsChanged?.Invoke(goldBars);
+        OnEnergyChanged?.Invoke(energy, maxEnergy);
     }
 
     private void Update()
     {
-        if (!Mathf.Approximately(_oldCoins, coins))
+        if (!Mathf.Approximately(_previousCoins, coins))
         {
             OnCoinChanged?.Invoke(coins);
-            _oldCoins = coins;
+            _previousCoins = coins;
         }
 
-        if (!Mathf.Approximately(_oldGoldBars, goldBars))
+        if (!Mathf.Approximately(_previousGoldBars, goldBars))
         {
             OnGoldBarsChanged?.Invoke(goldBars);
-            _oldGoldBars = goldBars;
+            _previousGoldBars = goldBars;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            AddCoins(10000);
         }
     }
 
+
+    public void AddCoins(float amount)
+    {
+        coins += amount;
+        OnCoinChanged?.Invoke(coins);
+    }
 
     public bool TrySpendCoins(float amount)
     {
-        if (coins >= amount)
+        if (coins < amount)
+            return false;
+
+        coins -= amount;
+        OnCoinChanged?.Invoke(coins);
+        return true;
+    }
+
+    public float GetCoins() => coins;
+
+
+    public void AddGold(float amount)
+    {
+        goldBars += amount;
+        OnGoldBarsChanged?.Invoke(goldBars);
+    }
+
+    public bool TrySpendGold(float amount)
+    {
+        if (goldBars < amount)
+            return false;
+
+        goldBars -= amount;
+        OnGoldBarsChanged?.Invoke(goldBars);
+        return true;
+    }
+
+    public float GetGold() => goldBars;
+
+
+    public int Energy
+    {
+        get => energy;
+        set
         {
-            coins -= amount;
-            return true;
+            energy = Mathf.Clamp(value, 0, maxEnergy);
+            OnEnergyChanged?.Invoke(energy, maxEnergy);
         }
-
-        return false;
-    }
-    
-    private void Awake()
-    {
-        CreateSingleton();
     }
 
-    public void AddOverflowEnergy(int amount)
+    public void AddEnergy(int amount)
     {
-        _energy += amount;
-        OnEnergyChanged?.Invoke(_energy, _maxEnergy);
+        Energy += amount;
     }
 
-    private void CreateSingleton()
+    public void SpendEnergy(int amount)
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        Energy -= amount;
+    }
 
-        DontDestroyOnLoad(gameObject);
+    public int GetMaxEnergy() => maxEnergy;
+
+    public bool IsFoodPurchased(StallFoodData food)
+    {
+        return purchasedFoods.Contains(food);
+    }
+
+    public void MarkFoodAsPurchased(StallFoodData food)
+    {
+        purchasedFoods.Add(food);
     }
 }

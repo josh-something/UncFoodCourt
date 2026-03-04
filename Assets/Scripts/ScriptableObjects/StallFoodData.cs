@@ -16,4 +16,10 @@ public class StallFoodData : ScriptableObject
     [Header("Economy")]
     public int unlockPrice;            
     public float baseIncome;   
+
+    [Header("Stall Settings")]
+    public int maxStock = 10;
+    public float upgradeMultiplier = 0.25f;
+
+    
 }
