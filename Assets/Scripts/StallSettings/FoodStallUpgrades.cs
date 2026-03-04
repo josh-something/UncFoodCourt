@@ -5,13 +5,15 @@ public class FoodStallUpgrades : MonoBehaviour
     public StallFoodData foodData; // Reference to the ScriptableObject containing food data
 
     [Header("Upgrade Settings")]
-    public int currentStock;
     public float baseIncome;
 
     [Header("Level")]
     [Range(1, 10)]
     public int level = 1;
     public const int maxLevel = 10;
+
+    [Header("Stock Settings")]
+    public int currentStock;
 
     [Header("Payback Settings")]
     public float basePayback = 15f;
@@ -23,7 +25,7 @@ public class FoodStallUpgrades : MonoBehaviour
         baseIncome = foodData.baseIncome;
     }
 
-    public float CurrentMultiplier()
+    public float CurrentMultiplier(int level )
     {
         return 1f + ((level - 1) * foodData.upgradeMultiplier); // Calculate the current multiplier based on the level and upgrade multiplier
         // multiplier increase per level = 0.25f
@@ -40,7 +42,17 @@ public class FoodStallUpgrades : MonoBehaviour
 
     public float GetIncomePerCustomer()
     {
-        return baseIncome * CurrentMultiplier(); 
+        return baseIncome * CurrentMultiplier(level); 
+    }
+
+    public float GetNextIncome()
+    {
+        if (level >= maxLevel)
+        {
+            return GetIncomePerCustomer();
+        }
+
+        return baseIncome * CurrentMultiplier(level + 1);
     }
 
     public float GetOrdersToPayback()

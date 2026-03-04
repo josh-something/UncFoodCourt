@@ -12,6 +12,7 @@ public class StallFoodData : ScriptableObject
 
     [Header("Visual")]
     public Sprite stallFoodImage;
+    public Sprite stallFoodIcon;
 
     [Header("Economy")]
     public int unlockPrice;            
