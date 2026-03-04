@@ -79,6 +79,7 @@ public class BurgerMovement : MonoBehaviour
         StartCoroutine(BurgerManager.instance.GetBurgerPart());
 
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb.gravityScale = 1f;
     }
 }
