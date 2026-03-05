@@ -23,12 +23,7 @@ public class BurgerMovement : MonoBehaviour
         new Vector3(Screen.width, Screen.height, distance)
     );
 }
-
-    IEnumerator InputDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        canReceiveInput = true;
-    }
+    
 
     void Update()
     {
@@ -74,7 +69,6 @@ public class BurgerMovement : MonoBehaviour
     {
         isFalling = true;
         canReceiveInput = false;
-        StartCoroutine(InputDelay()); // prevent double clicks
 
         StartCoroutine(BurgerManager.instance.GetBurgerPart());
 
