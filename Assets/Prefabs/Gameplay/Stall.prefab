@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 3670683479947535203}
   - component: {fileID: 962851446690379641}
   - component: {fileID: 1518489110641849064}
+  - component: {fileID: 6184212066247116405}
   m_Layer: 0
   m_Name: Stall
   m_TagString: Untagged
@@ -243,6 +244,22 @@ MonoBehaviour:
   lockOverlay: {fileID: 433564548910799767}
   emptyStallVisual: {fileID: 8443950460230528133}
   stallRenderer: {fileID: 3670683479947535203}
+--- !u!114 &6184212066247116405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036848438175076135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431535d97ee577c47bbb60de522572a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodData: {fileID: 0}
+  baseIncome: 0
+  level: 1
+  currentStock: 0
 --- !u!1 &2901002552700243390
 GameObject:
   m_ObjectHideFlags: 0

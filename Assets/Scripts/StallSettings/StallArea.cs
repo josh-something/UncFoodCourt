@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class StallArea : MonoBehaviour, IPointerClickHandler
 {
+
     public StallAreaData stallAreaData;
 
     public bool isUnlocked;
@@ -14,7 +15,6 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
     public GameObject lockOverlay;
     public GameObject emptyStallVisual; 
     public SpriteRenderer stallRenderer;
-
 
     private void Start()
     {
@@ -45,17 +45,21 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
         {
             StallUIManager.Instance.OpenUnlockPanel(this);
         }
-        else if (assignedFood == null)
+        else if (!HasFood())
         {
             StallUIManager.Instance.OpenFoodSelection(this);
         }
         else
         {
             Debug.Log("Stall already selling " + assignedFood.stallFoodName);
+            StallUIManager.Instance.OpenStallInfoPanel(this);
         }
     }
 
-
+    public bool HasFood()
+    {
+        return assignedFood != null;
+    }
 
     public void UnlockStall()
     {
@@ -87,5 +91,6 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
     {
         isUnlocked = PlayerPrefs.GetInt(stallAreaData.stallID, 0) == 1;
     }
+    
     
 }

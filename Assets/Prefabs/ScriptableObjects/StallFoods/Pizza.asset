@@ -16,6 +16,7 @@ MonoBehaviour:
   stallFoodName: Pizza Shack
   stallFoodDescription: "The Pizza Craze \nStarts Here"
   stallFoodImage: {fileID: -187105095926027218, guid: 46b38d3a7f1e618438012db28ba9c816, type: 3}
+  stallFoodIcon: {fileID: 7576617242518483205, guid: 5fd6c5e9288c08543a941beca767caf3, type: 3}
   unlockPrice: 2175
   baseIncome: 145
   maxStock: 10

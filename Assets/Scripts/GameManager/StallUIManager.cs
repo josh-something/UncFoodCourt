@@ -18,10 +18,23 @@ public class StallUIManager : MonoBehaviour
     public TMP_Text[] nameTexts;
     public TMP_Text[] priceTexts;
 
+    [Header("Stall Info Panel")]
+    public GameObject stallInfoPanel;
+    public TMP_Text stallLevelText;
+    public Image stallIcon;
+    public TMP_Text stallNameText;
+    public TMP_Text stallDescriptionText;
+    public TMP_Text stallStockText;
+    public TMP_Text currentIncomeText;
+    public TMP_Text nextLevelText;
+    public TMP_Text upgradeCostText;
+    public Button upgradeButton;
+
     public StallFoodData[] availableFoods;
 
     private StallFoodData currentFood;
     private StallArea currentStall;
+    private FoodStallUpgrades foodStallUpgrades; 
 
     public void Awake()
     {
@@ -30,7 +43,7 @@ public class StallUIManager : MonoBehaviour
 
     public void OpenUnlockPanel(StallArea stall) //Locked Stall Clicked
     {
-        UIManager.Instance.OpenBackgroundOverlay();
+        //UIManager.Instance.OpenBackgroundOverlay();
         currentStall = stall;
         unlockText.text = "Price: " + stall.stallAreaData.unlockPrice.ToString("N0");
         UIManager.Instance.OpenPanel(unlockPanel);
@@ -132,4 +145,73 @@ public class StallUIManager : MonoBehaviour
         }
     }
 
+    public void OpenStallInfoPanel(StallArea stall) //Stall with Food Clicked
+    {
+        if (currentStall == stall && stallInfoPanel.activeSelf)
+        return;
+
+        currentStall = stall;
+        currentFood = stall.assignedFood;
+        foodStallUpgrades = stall.GetComponent<FoodStallUpgrades>();
+        UIManager.Instance.OpenPanel(stallInfoPanel);
+
+        RefreshStallInfoUI();
+
+        stallLevelText.text = "Level: " + foodStallUpgrades.level;
+
+        stallIcon.sprite = currentFood.stallFoodIcon;
+        stallNameText.text = currentFood.stallFoodName;
+        stallDescriptionText.text = currentFood.stallFoodDescription;
+        
+        stallStockText.text = $"{foodStallUpgrades.currentStock}/10";
+        currentIncomeText.text = $"{foodStallUpgrades.GetIncomePerCustomer()}/Order";
+
+        nextLevelText.text = $"{foodStallUpgrades.GetNextIncome()}/Order";
+        upgradeCostText.text = $"{foodStallUpgrades.GetUpgradeCost()} coins";
+
+        upgradeButton.interactable = foodStallUpgrades.level < FoodStallUpgrades.maxLevel;
+    }
+
+    public void RefreshStallInfoUI()
+    {
+        if (currentStall == null || currentFood == null || foodStallUpgrades == null)
+        return;
+
+         if (foodStallUpgrades == null)
+        {
+            Debug.LogError("FoodStallUpgrades not found on stall!");
+            return;
+        }
+        stallLevelText.text = "Level: " + foodStallUpgrades.level;
+
+        stallStockText.text = $"{foodStallUpgrades.currentStock}/10";
+        currentIncomeText.text = $"{foodStallUpgrades.GetIncomePerCustomer()}/Order";
+
+        nextLevelText.text = $"{foodStallUpgrades.GetNextIncome()}/Order";
+        upgradeCostText.text = $"{foodStallUpgrades.GetUpgradeCost()}";
+
+        upgradeButton.interactable = foodStallUpgrades.level < FoodStallUpgrades.maxLevel;
+    }
+    
+    public void CloseStallInfo() //Exit Button Clicked
+    {
+        UIManager.Instance.CloseCurrentPanel();
+        // UIManager.Instance.CloseBackgroundOverlay();
+        RefreshStallInfoUI();
+    }
+
+    public void OnClickUpgrade() //Upgrade Button Clicked
+    {
+
+        bool success = foodStallUpgrades.TryUpgrade();
+
+        if (success)
+        {
+            RefreshStallInfoUI();
+        }
+        else
+        {
+            Debug.Log("Not enough coins or max level reached!");
+        }
+    }
 }

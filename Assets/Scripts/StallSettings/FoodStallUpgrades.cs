@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FoodStallUpgrades : MonoBehaviour
 {
-    public StallFoodData foodData; // Reference to the ScriptableObject containing food data
+    private StallFoodData foodData; // Reference to the ScriptableObject containing food data
+    private StallArea stallArea; // Reference to the StallArea component
 
     [Header("Upgrade Settings")]
     public float baseIncome;
@@ -16,13 +17,26 @@ public class FoodStallUpgrades : MonoBehaviour
     public int currentStock;
 
     [Header("Payback Settings")]
-    public float basePayback = 15f;
-    public float paybackGrowth = 8f;
+    private float basePayback = 15f;
+    private float paybackGrowth = 8f;
 
     private void Start()
     {
         currentStock = foodData.maxStock;
         baseIncome = foodData.baseIncome;
+    }
+
+    public void SetFood(StallFoodData food)
+    {
+        foodData = food;
+
+        if (foodData == null)
+            return;
+
+        currentStock = foodData.maxStock;
+        baseIncome = foodData.baseIncome;
+
+        Debug.Log("Food assigned to upgrade system: " + foodData.stallFoodName);
     }
 
     public float CurrentMultiplier(int level )
@@ -42,17 +56,21 @@ public class FoodStallUpgrades : MonoBehaviour
 
     public float GetIncomePerCustomer()
     {
-        return baseIncome * CurrentMultiplier(level); 
+        if (stallArea == null || stallArea.assignedFood == null)
+        return 0;
+
+        return stallArea.assignedFood.baseIncome * CurrentMultiplier(level);
     }
 
     public float GetNextIncome()
     {
-        if (level >= maxLevel)
-        {
-            return GetIncomePerCustomer();
-        }
+        if (foodData == null)
+        return 0;
 
-        return baseIncome * CurrentMultiplier(level + 1);
+        if (level >= maxLevel)
+        return GetIncomePerCustomer();
+
+        return foodData.baseIncome * CurrentMultiplier(level + 1);
     }
 
     public float GetOrdersToPayback()
@@ -68,16 +86,16 @@ public class FoodStallUpgrades : MonoBehaviour
         int cost = GetUpgradeCost();
 
         bool success = StatsManager.Instance.TrySpendCoins(cost);
-        if (success)
-        {
-            level++;
-            Debug.Log("Upgraded to level " + level);
-        }
-        else
+        if (!success)
         {
             Debug.Log("Not enough coins to upgrade.");
+            return false;
         }
+            
+        level++;
+        Debug.Log("Upgraded to level " + level);
         return true;
+        
     }
 
     
