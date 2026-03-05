@@ -4,6 +4,7 @@ public class FoodStallUpgrades : MonoBehaviour
 {
     private StallFoodData foodData; // Reference to the ScriptableObject containing food data
     private StallArea stallArea; // Reference to the StallArea component
+    private PopularityManager popularity; // Reference to the PopularityManager component
 
     [Header("Upgrade Settings")]
     public float baseIncome;
@@ -23,6 +24,7 @@ public class FoodStallUpgrades : MonoBehaviour
     private void Awake()
     {
         stallArea = GetComponent<StallArea>();
+        popularityManager = GetComponent<PopularityManager>();
     }
 
     // public void SetFood(StallFoodData food) // Assigns the food data to the upgrade system and initializes stock and income based on the assigned food
@@ -115,6 +117,14 @@ public class FoodStallUpgrades : MonoBehaviour
         if (currentStock <= 0)
         {
             Debug.Log("Out of stock!");
+
+            
+            if (popularity != null)
+            {
+                popularity.AddPopularity(-5); 
+                Debug.Log("Popularity decreased due to stockout. Current popularity: " + popularity.CurrentPopularity);
+            }
+
             return false;
         }
 
@@ -122,6 +132,7 @@ public class FoodStallUpgrades : MonoBehaviour
 
         currentStock--;
         StatsManager.Instance.AddCoins(income);
+        popularity?.AddPopularity(2);
 
         Debug.Log("Order processed. Earned: " + income);
 
