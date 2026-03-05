@@ -11,7 +11,6 @@ public class PopularityManager : MonoBehaviour
     private float _oldpopularityPercentage = 0f;
 
     public static event Action<float> OnPopularityChanged;
-    //public Slider popularitySlider;
 
     public int PopularityStars()
     {
@@ -65,8 +64,6 @@ public class PopularityManager : MonoBehaviour
 
 
         EvaluatePopularityChange();
-        //Slider
-        //popularityPercentage = popularitySlider.value;
     }
 
     private void EvaluatePopularityChange()

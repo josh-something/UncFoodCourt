@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FoodStallUpgrades : MonoBehaviour
 {
     private StallFoodData foodData; // Reference to the ScriptableObject containing food data
     private StallArea stallArea; // Reference to the StallArea component
-    private PopularityManager popularity; // Reference to the PopularityManager component
+    private PopularityManager popularityManager; // Reference to the PopularityManager component
 
     [Header("Upgrade Settings")]
     public float baseIncome;
@@ -24,21 +25,20 @@ public class FoodStallUpgrades : MonoBehaviour
     private void Awake()
     {
         stallArea = GetComponent<StallArea>();
-        popularityManager = GetComponent<PopularityManager>();
+        popularityManager = FindFirstObjectByType<PopularityManager>();
     }
 
-    // public void SetFood(StallFoodData food) // Assigns the food data to the upgrade system and initializes stock and income based on the assigned food
-    // {
-    //     foodData = food;
-
-    //     if (foodData == null)
-    //         return;
-
-    //     currentStock = foodData.maxStock;
-    //     baseIncome = foodData.baseIncome;
-
-    //     Debug.Log("Food assigned to upgrade system: " + foodData.stallFoodName);
-    // }
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            currentStock--;
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            currentStock++;
+        }
+    }
 
     public float CurrentMultiplier(int level )
     {
@@ -119,10 +119,10 @@ public class FoodStallUpgrades : MonoBehaviour
             Debug.Log("Out of stock!");
 
             
-            if (popularity != null)
+            if (popularityManager != null)
             {
-                popularity.AddPopularity(-5); 
-                Debug.Log("Popularity decreased due to stockout. Current popularity: " + popularity.CurrentPopularity);
+                popularityManager.AddPopularity(-5); 
+                Debug.Log("Popularity decreased due to stockout. Current popularity: " + popularityManager.PopularityStars() + " stars.");
             }
 
             return false;
@@ -132,7 +132,7 @@ public class FoodStallUpgrades : MonoBehaviour
 
         currentStock--;
         StatsManager.Instance.AddCoins(income);
-        popularity?.AddPopularity(2);
+        popularityManager?.AddPopularity(2);
 
         Debug.Log("Order processed. Earned: " + income);
 
