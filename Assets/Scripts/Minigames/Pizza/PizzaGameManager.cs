@@ -6,7 +6,8 @@ using TMPro;
 public class PizzaGameManager : MonoBehaviour
 {
     #region Variables
-    
+
+    [HideInInspector] public Grades finalGrade;
     private enum PizzaState
     {
         Cutting,
@@ -20,6 +21,10 @@ public class PizzaGameManager : MonoBehaviour
     [SerializeField] private PizzaBoxing Pizza;
     [SerializeField] private Transform PizzaBox;
     [SerializeField] private List<PizzaCut> _pizzaCuts;
+    [Space]
+    [Header("Instruction Text")]
+    [SerializeField] private TMP_Text instructionText;
+    [SerializeField] [TextArea]private List<string> instructions;
     
     private PizzaState _pizzaState = PizzaState.Cutting;
     private float _timestart;
@@ -55,6 +60,7 @@ public class PizzaGameManager : MonoBehaviour
     
     private void CutPizzas()
     {
+        instructionText.text = instructions[(int)_pizzaState];
         // check if finished current cut
         if (_pizzaCuts[_cuts].isCutComplete)
         {
@@ -75,6 +81,7 @@ public class PizzaGameManager : MonoBehaviour
         {
             if (!_wrapInitialized)
             {
+                instructionText.text = instructions[(int)_pizzaState];
                 PizzaBox.gameObject.SetActive(true);
                 Pizza.enabled = true;
                 Pizza.transform.position += Vector3.down * 2;
@@ -90,29 +97,29 @@ public class PizzaGameManager : MonoBehaviour
             }
         }
 
-    private Grades GradeScore()
+    private void GradeScore()
     {
-        if (!_isGraded)
-        {
-            _isGraded = true;
-            var time = Time.time - _timestart;
+        if (_isGraded) return;
+        
+        _isGraded = true;
+        var time = Time.time - _timestart;
+        Grades grade;
 
-            if (time <= perfectTime)
-            {
-                Debug.Log("Time:" + time + ", Grade: " + nameof(Grades.Perfect));
-                return Grades.Perfect;
-            }
-            else if (time <= goodTime)
-            {
-                Debug.Log("Time:" + time + ", Grade: " + nameof(Grades.Good));
-                return Grades.Good;
-            }
-            else
-            {
-                Debug.Log("Time:" + time + ", Grade: " + nameof(Grades.Bad));
-                return Grades.Bad;
-            }
+        if (time <= perfectTime)
+        {
+            grade = Grades.Perfect;
         }
-        return Grades.Bad;
+        else if (time <= goodTime)
+        {
+            grade = Grades.Good;
+        }
+        else
+        {
+            grade = Grades.Bad;
+        }
+        
+        finalGrade = grade;
+        Debug.Log("Time:" + time + ", Grade: " + grade);
+        instructionText.text = "Finish \n Time: " + time.ToString("F2") + ", Grade: " + grade;
     }
 }

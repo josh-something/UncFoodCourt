@@ -45,6 +45,7 @@ public class PizzaBoxing : MonoBehaviour
     
     private void ClickOncanceled(InputAction.CallbackContext obj)
     {
+        if (!_isDragging) return;
         Debug.Log("release Click");
         _isDragging = false;
         var dist = Vector3.Distance(pizzaBox.position, transform.position);
@@ -52,6 +53,7 @@ public class PizzaBoxing : MonoBehaviour
         {
             isBoxed = true;
             transform.position = pizzaBox.position;
+            this.enabled = false;
         }
         else
         {
@@ -61,7 +63,7 @@ public class PizzaBoxing : MonoBehaviour
 
     private void Update()
     {
-        if (!_click.IsInProgress()) return;
+        if (!_isDragging) return;
         var targetpos =_camera.ScreenToWorldPoint(_drag.ReadValue<Vector2>());
         transform.position = new Vector3(targetpos.x, targetpos.y, transform.position.z);
     }
