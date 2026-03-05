@@ -20,29 +20,30 @@ public class FoodStallUpgrades : MonoBehaviour
     private float basePayback = 15f;
     private float paybackGrowth = 8f;
 
-    private void Start()
+    private void Awake()
     {
-        currentStock = foodData.maxStock;
-        baseIncome = foodData.baseIncome;
+        stallArea = GetComponent<StallArea>();
     }
 
-    public void SetFood(StallFoodData food)
-    {
-        foodData = food;
+    // public void SetFood(StallFoodData food) // Assigns the food data to the upgrade system and initializes stock and income based on the assigned food
+    // {
+    //     foodData = food;
 
-        if (foodData == null)
-            return;
+    //     if (foodData == null)
+    //         return;
 
-        currentStock = foodData.maxStock;
-        baseIncome = foodData.baseIncome;
+    //     currentStock = foodData.maxStock;
+    //     baseIncome = foodData.baseIncome;
 
-        Debug.Log("Food assigned to upgrade system: " + foodData.stallFoodName);
-    }
+    //     Debug.Log("Food assigned to upgrade system: " + foodData.stallFoodName);
+    // }
 
     public float CurrentMultiplier(int level )
     {
-        return 1f + ((level - 1) * foodData.upgradeMultiplier); // Calculate the current multiplier based on the level and upgrade multiplier
-        // multiplier increase per level = 0.25f
+        if (stallArea == null || stallArea.assignedFood == null)
+        return 1f;
+
+        return 1f + ((level - 1) * stallArea.assignedFood.upgradeMultiplier);
     }
 
     public int GetUpgradeCost() // Calculate the cost to upgrade based on the current income and payback settings
@@ -64,13 +65,13 @@ public class FoodStallUpgrades : MonoBehaviour
 
     public float GetNextIncome()
     {
-        if (foodData == null)
+        if (stallArea == null || stallArea.assignedFood == null)
         return 0;
 
         if (level >= maxLevel)
-        return GetIncomePerCustomer();
+            return GetIncomePerCustomer();
 
-        return foodData.baseIncome * CurrentMultiplier(level + 1);
+        return stallArea.assignedFood.baseIncome * CurrentMultiplier(level + 1);
     }
 
     public float GetOrdersToPayback()
@@ -98,6 +99,33 @@ public class FoodStallUpgrades : MonoBehaviour
         
     }
 
-    
+    public void ResetProgress()
+    {
+        level = 1;
+
+        if (stallArea.assignedFood != null)
+            currentStock = stallArea.assignedFood.maxStock;
+    }
+
+    public bool TryProcessOrder()
+    {
+        if (stallArea == null || stallArea.assignedFood == null)
+            return false;
+
+        if (currentStock <= 0)
+        {
+            Debug.Log("Out of stock!");
+            return false;
+        }
+
+        float income = GetIncomePerCustomer();
+
+        currentStock--;
+        StatsManager.Instance.AddCoins(income);
+
+        Debug.Log("Order processed. Earned: " + income);
+
+        return true;
+    }
 
 }

@@ -72,8 +72,17 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
     {
         assignedFood = food;
         stallRenderer.sprite = food.stallFoodImage;
+
+        FoodStallUpgrades upgrades = GetComponent<FoodStallUpgrades>();
+        if (upgrades != null)
+        {
+            upgrades.ResetProgress();
+        }
+
         UpdateVisual();
     }
+
+    
 
     private void UpdateVisual()
     {
