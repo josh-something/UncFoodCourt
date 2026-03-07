@@ -1,7 +1,7 @@
 using System.ComponentModel.Design;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class FoodStallUpgrades : MonoBehaviour
 {
@@ -35,11 +35,11 @@ public class FoodStallUpgrades : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Keyboard.current.zKey.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Z))
         {
             currentStock--;
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Keyboard.current.xKey.wasPressedThisFrame || Input.GetKeyDown(KeyCode.X))
         {
             currentStock++;
         }
