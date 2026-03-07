@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Data.Common;
+using Unity.VisualScripting;
 
 public class StallUIManager : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class StallUIManager : MonoBehaviour
     public TMP_Text unlockText;
 
     [Header("Assign Food UI")]
-    public Button[] foodButtons;   
+    public Button[] foodButtons;
     public TMP_Text[] nameTexts;
     public TMP_Text[] priceTexts;
 
@@ -30,11 +32,18 @@ public class StallUIManager : MonoBehaviour
     public TMP_Text upgradeCostText;
     public Button upgradeButton;
 
+    [Header("Stall Info Panel")]
+    public GameObject stallListPanel;
+    public StallArea[] stallList;
+    public StallListUIPanel[] stallSlots;
+
+
+
     public StallFoodData[] availableFoods;
 
     private StallFoodData currentFood;
     private StallArea currentStall;
-    private FoodStallUpgrades foodStallUpgrades; 
+    private FoodStallUpgrades foodStallUpgrades;
 
     public void Awake()
     {
@@ -72,7 +81,7 @@ public class StallUIManager : MonoBehaviour
     {
         unlockPanel.SetActive(false);
         UIManager.Instance.CloseCurrentPanel();
-    }    
+    }
 
     public void OpenFoodSelection(StallArea stall) //Unlocked but Empty Stall Clicked
     {
@@ -86,11 +95,11 @@ public class StallUIManager : MonoBehaviour
     public void SelectFood(StallFoodData food) //Food Option Clicked
     {
         if (currentStall == null)
-        return;
+            return;
 
         if (StatsManager.Instance.IsFoodPurchased(food)) // Double-check if food is already purchased
         {
-             Debug.Log("Food already purchased!");
+            Debug.Log("Food already purchased!");
             return;
         }
 
@@ -161,7 +170,7 @@ public class StallUIManager : MonoBehaviour
     public void RefreshStallInfoUI()
     {
         if (currentStall == null)
-        return;
+            return;
 
         StallFoodData food = currentStall.assignedFood;
         FoodStallUpgrades upgrades = currentStall.GetComponent<FoodStallUpgrades>();
@@ -182,7 +191,7 @@ public class StallUIManager : MonoBehaviour
 
         upgradeButton.interactable = upgrades.level < FoodStallUpgrades.maxLevel;
     }
-    
+
     public void CloseStallInfo() //Exit Button Clicked
     {
         UIManager.Instance.CloseCurrentPanel();
@@ -204,4 +213,30 @@ public class StallUIManager : MonoBehaviour
             Debug.Log("Not enough coins or max level reached!");
         }
     }
+
+    public void OpenStallListUIPanel()
+    {
+        UIManager.Instance.OpenPanel(stallListPanel);
+
+        for (int i = 0; i < stallSlots.Length; i++)
+        {
+            StallArea stall = stallList[i];
+
+            if (stall.assignedFood == null)
+            {
+                stallSlots[i].EmptyStall();
+            }
+            else
+            {
+                stallSlots[i].StallWithFood(stall.assignedFood);
+            }
+        }
+    }
+
+    public void CloseStallListPanel()
+    {
+        UIManager.Instance.CloseCurrentPanel();
+    }
+
+
 }

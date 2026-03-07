@@ -1,5 +1,7 @@
+using System.ComponentModel.Design;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FoodStallUpgrades : MonoBehaviour
 {
@@ -17,20 +19,23 @@ public class FoodStallUpgrades : MonoBehaviour
 
     [Header("Stock Settings")]
     public int currentStock;
+    public GameObject restockButton;
 
     [Header("Payback Settings")]
     private float basePayback = 15f;
     private float paybackGrowth = 8f;
 
+
     private void Awake()
     {
         stallArea = GetComponent<StallArea>();
         popularityManager = FindFirstObjectByType<PopularityManager>();
+        restockButton.SetActive(false);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             currentStock--;
         }
@@ -40,10 +45,10 @@ public class FoodStallUpgrades : MonoBehaviour
         }
     }
 
-    public float CurrentMultiplier(int level )
+    public float CurrentMultiplier(int level)
     {
         if (stallArea == null || stallArea.assignedFood == null)
-        return 1f;
+            return 1f;
 
         return 1f + ((level - 1) * stallArea.assignedFood.upgradeMultiplier);
     }
@@ -53,14 +58,14 @@ public class FoodStallUpgrades : MonoBehaviour
         if (level >= maxLevel) // No more upgrades available
             return 0;
 
-        float cost = GetIncomePerCustomer() * GetOrdersToPayback(); 
-        return Mathf.RoundToInt(cost); 
+        float cost = GetIncomePerCustomer() * GetOrdersToPayback();
+        return Mathf.RoundToInt(cost);
     }
 
     public float GetIncomePerCustomer()
     {
         if (stallArea == null || stallArea.assignedFood == null)
-        return 0;
+            return 0;
 
         return stallArea.assignedFood.baseIncome * CurrentMultiplier(level);
     }
@@ -68,7 +73,7 @@ public class FoodStallUpgrades : MonoBehaviour
     public float GetNextIncome()
     {
         if (stallArea == null || stallArea.assignedFood == null)
-        return 0;
+            return 0;
 
         if (level >= maxLevel)
             return GetIncomePerCustomer();
@@ -94,11 +99,11 @@ public class FoodStallUpgrades : MonoBehaviour
             Debug.Log("Not enough coins to upgrade.");
             return false;
         }
-            
+
         level++;
         Debug.Log("Upgraded to level " + level);
         return true;
-        
+
     }
 
     public void ResetProgress()
@@ -118,10 +123,10 @@ public class FoodStallUpgrades : MonoBehaviour
         {
             Debug.Log("Out of stock!");
 
-            
+
             if (popularityManager != null)
             {
-                popularityManager.AddPopularity(-5); 
+                popularityManager.AddPopularity(-5);
                 Debug.Log("Popularity decreased due to stockout. Current popularity: " + popularityManager.PopularityStars() + " stars.");
             }
 
@@ -134,9 +139,20 @@ public class FoodStallUpgrades : MonoBehaviour
         StatsManager.Instance.AddCoins(income);
         popularityManager?.AddPopularity(2);
 
+        if (currentStock <= 3)
+        {
+            OnLowStock();
+        }
+
         Debug.Log("Order processed. Earned: " + income);
 
         return true;
+    }
+
+    public void OnLowStock()
+    {
+        restockButton.SetActive(true);
+
     }
 
 }

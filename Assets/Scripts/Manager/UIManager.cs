@@ -32,9 +32,6 @@ public class UIManager : MonoBehaviour
         {
             currentOpenPanel.SetActive(false);
         }
-
-
-
         currentOpenPanel = panel;
         panel.SetActive(true);
         Time.timeScale = 0f;
