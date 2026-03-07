@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &702469926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 1179433895}
   - component: {fileID: 1179433897}
   - component: {fileID: 1179433896}
+  - component: {fileID: 1179433898}
   m_Layer: 5
   m_Name: PreviewPanel
   m_TagString: Untagged
@@ -526,6 +527,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179433894}
   m_CullTransparentMesh: 1
+--- !u!114 &1179433898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179433894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c886a7490b315042a71ab2ddb64657c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameCamera: {fileID: 0}
+  coneTag: Player
+  scoopTag: Scoop
 --- !u!1 &1776373939
 GameObject:
   m_ObjectHideFlags: 0

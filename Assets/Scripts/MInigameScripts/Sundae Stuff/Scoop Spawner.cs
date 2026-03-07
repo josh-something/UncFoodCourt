@@ -18,14 +18,23 @@ public class ScoopSpawner : MonoBehaviour
     private Vector2 screenBounds;
     private GameObject[] Scoops;
     private int scoopsToSpawn;
+    private Camera miniGameCamera;
 
     void Start()
     {
-        Camera cam = Camera.main;
+        // Find camera dynamically (for additive scene)
+        miniGameCamera = GameObject.FindGameObjectWithTag("MiniGameCam")?.GetComponent<Camera>();
+        if (miniGameCamera == null)
+        {
+            Debug.LogError("MiniGameCam not found! Make sure the camera in Sundae scene is tagged correctly.");
+            return;
+        }
+
         Scoops = GameObject.FindGameObjectsWithTag("Scoop");
         scoopsToSpawn = Scoops.Length;
-        float distance = Mathf.Abs(cam.transform.position.z);
-        screenBounds = cam.ScreenToWorldPoint(
+
+        float distance = Mathf.Abs(miniGameCamera.transform.position.z - transform.position.z);
+        screenBounds = miniGameCamera.ScreenToWorldPoint(
             new Vector3(Screen.width, Screen.height, distance)
         );
 
@@ -36,7 +45,7 @@ public class ScoopSpawner : MonoBehaviour
 
     void Update()
     {
-        // MoveLeftRight();
+        MoveLeftRight();
     }
 
     void MoveLeftRight()
@@ -47,6 +56,7 @@ public class ScoopSpawner : MonoBehaviour
         {
             transform.Translate(Vector2.right * moveStep);
 
+            // Clamp position so spawner doesn't go off camera
             if (transform.position.x >= screenBounds.x - screenPadding)
                 movingRight = false;
         }
@@ -66,33 +76,38 @@ public class ScoopSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             SpawnObject();
-            SetRandomSpeed(); // change speed every spawn
+            SetRandomSpeed();
         }
     }
 
     void SpawnObject()
-{
-    if (scoopsToSpawn <= 0) return;
-
-    scoopsToSpawn--;
-
-    Vector3 spawnPos = new Vector3(
-        transform.position.x,
-        transform.position.y + spawnHeightOffset,
-        0f
-    );
-
-    GameObject scoop = Scoops[scoopsToSpawn];
-
-    scoop.transform.position = spawnPos;
-
-    Rigidbody2D rb = scoop.GetComponent<Rigidbody2D>();
-    if (rb != null)
     {
-        rb.linearVelocity = Vector2.zero;   // reset movement
-        rb.angularVelocity = 0f;
+        if (scoopsToSpawn <= 0) return;
+
+        scoopsToSpawn--;
+
+        Vector3 spawnPos = new Vector3(
+            transform.position.x,
+            transform.position.y + spawnHeightOffset,
+            0f
+        );
+
+        // Clamp spawn X to camera bounds
+        float distance = Mathf.Abs(miniGameCamera.transform.position.z - spawnPos.z);
+        Vector3 min = miniGameCamera.ViewportToWorldPoint(new Vector3(0, 0, distance));
+        Vector3 max = miniGameCamera.ViewportToWorldPoint(new Vector3(1, 1, distance));
+        spawnPos.x = Mathf.Clamp(spawnPos.x, min.x, max.x);
+
+        GameObject scoop = Scoops[scoopsToSpawn];
+        scoop.transform.position = spawnPos;
+
+        Rigidbody2D rb = scoop.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;   // reset movement
+            rb.angularVelocity = 0f;
+        }
     }
-}
 
     void SetRandomSpeed()
     {

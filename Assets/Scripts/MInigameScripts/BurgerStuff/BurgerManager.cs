@@ -11,6 +11,8 @@ public class BurgerManager : MonoBehaviour
     public int placed,centered,missed;
     BurgerSpawn burgerSpawn;
 
+    //manages UI and burger stats
+
     public void Awake()
     {
         
