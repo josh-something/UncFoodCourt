@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class LoadMiniScene : MonoBehaviour
 {
     [SerializeField] private string sceneToLoad = "Sundae";
 
-    private void Start()
+    void Start()
     {
         StartCoroutine(LoadSceneAdditive());
     }
