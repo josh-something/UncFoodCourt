@@ -37,13 +37,13 @@ public class RiceGameManager : MonoBehaviour
         Mixed
     }
 
-    #region  Variables
+    #region Variables
 
     [InspectorName("Particle System")]
     public ParticleSystem ps;
     public UnityEvent<float> onMixProgressReached;
-    public Grades finalGrade { get; private set; }
-    public bool isGraded { get; private set; }
+    public Grades FinalGrade { get; private set; }
+    public bool IsGraded { get; private set; }
 
     [SerializeField] private float mixingMult = 1;
     [SerializeField] private float targetMixProgress = 1600;
@@ -58,9 +58,7 @@ public class RiceGameManager : MonoBehaviour
     private bool _isDragging;
     private MixState _state = MixState.NotMixed;
     private float _startTime;
-    
-    
-    
+
     #endregion
 
     private void Awake()
@@ -85,7 +83,7 @@ public class RiceGameManager : MonoBehaviour
         _click.started -= ClickOnStarted;
         _click.canceled -= ClickOnCanceled;
     }
-    
+
     void Update()
     {
         if (_state == MixState.Mixed) return;
@@ -94,7 +92,7 @@ public class RiceGameManager : MonoBehaviour
         GenerateParticles(mixValue);
         UpdateMixProgress();
     }
-    
+
     private void IncreaseMix(out float mixValue)
     {
         var delta = _drag.ReadValue<Vector2>().magnitude;
@@ -105,11 +103,9 @@ public class RiceGameManager : MonoBehaviour
     private void GenerateParticles(float mixValue)
     {
         _particleCounter += mixValue;
-        if (_particleCounter >= 10)
-        {
-            ps.Play();
-            _particleCounter -= 10;
-        }
+        if (!(_particleCounter >= 10)) return;
+        ps.Play();
+        _particleCounter -= 10;
     }
 
     void UpdateMixProgress()
@@ -121,11 +117,12 @@ public class RiceGameManager : MonoBehaviour
         {
             case MixState.NotMixed:
                 // ...25% threshold
-                if (ratio >.25) 
+                if (ratio > .25)
                 {
                     onMixProgressReached?.Invoke(25);
                     _state = MixState.LightlyMixed;
                 }
+
                 break;
             
             case MixState.LightlyMixed:
@@ -135,6 +132,7 @@ public class RiceGameManager : MonoBehaviour
                     onMixProgressReached?.Invoke(50);
                     _state = MixState.HalfMixed;
                 }
+
                 break;
             
             case MixState.HalfMixed:
@@ -144,6 +142,7 @@ public class RiceGameManager : MonoBehaviour
                     onMixProgressReached?.Invoke(75);
                     _state = MixState.AlmostMixed;
                 }
+
                 break;
             
             case MixState.AlmostMixed:
@@ -154,7 +153,9 @@ public class RiceGameManager : MonoBehaviour
                     _state = MixState.Mixed;
                     GradeScore();
                 }
+
                 break;
+
             case MixState.Mixed:
                 Debug.LogWarning("This shouldn't Happen");
                 break;
@@ -165,20 +166,22 @@ public class RiceGameManager : MonoBehaviour
 
     private void GradeScore()
     {
-        var totalTime =  Time.time - _startTime;
-        isGraded = true;
+        var totalTime = Time.time - _startTime;
+        IsGraded = true;
         if (totalTime <= perfectTime)
         {
-            finalGrade = Grades.Perfect;
-        } else if (totalTime <= goodTime)
+            FinalGrade = Grades.Perfect;
+        }
+        else if (totalTime <= goodTime)
         {
-            finalGrade = Grades.Good;
+            FinalGrade = Grades.Good;
         }
         else
         {
-            finalGrade = Grades.Bad;
+            FinalGrade = Grades.Bad;
         }
-        Debug.Log(totalTime +" "+finalGrade);
+
+        Debug.Log(totalTime + " " + FinalGrade);
     }
 
     private void ClickOnStarted(InputAction.CallbackContext obj)
@@ -186,7 +189,7 @@ public class RiceGameManager : MonoBehaviour
         Debug.Log("ClickOnStarted");
         _isDragging = true;
     }
-    
+
     private void ClickOnCanceled(InputAction.CallbackContext obj)
     {
         Debug.Log("ClickOnCanceled");
