@@ -26,7 +26,7 @@ public class RiceGameManager : MonoBehaviour
      Light = 25% mixed
      Half = 50% mixed
      Almost = 75% mixed
-     Mixed = 100%
+     FullyMixed = 100%
      */
     enum MixState
     {
@@ -42,17 +42,23 @@ public class RiceGameManager : MonoBehaviour
     [InspectorName("Particle System")]
     public ParticleSystem ps;
     public UnityEvent<float> onMixProgressReached;
-    
+    public Grades finalGrade { get; private set; }
+    public bool isGraded { get; private set; }
+
     [SerializeField] private float mixingMult = 1;
     [SerializeField] private float targetMixProgress = 1600;
+    [SerializeField] private float perfectTime = 9;
+    [SerializeField] private float goodTime = 11;
     
     private InputAction _click;
     private InputAction _drag;
 
-    private float _particleCD;
+    private float _particleCounter;
     private float _mixProgress;
     private bool _isDragging;
     private MixState _state = MixState.NotMixed;
+    private float _startTime;
+    
     
     
     #endregion
@@ -63,16 +69,21 @@ public class RiceGameManager : MonoBehaviour
         _drag = InputSystem.actions.FindAction("Look");
     }
 
+    private void Start()
+    {
+        _startTime = Time.time;
+    }
+
     private void OnEnable()
     {
-        _click.started += ClickOnstarted;
-        _click.canceled += ClickOncanceled;
+        _click.started += ClickOnStarted;
+        _click.canceled += ClickOnCanceled;
     }
 
     private void OnDisable()
     {
-        _click.started -= ClickOnstarted;
-        _click.canceled -= ClickOncanceled;
+        _click.started -= ClickOnStarted;
+        _click.canceled -= ClickOnCanceled;
     }
     
     void Update()
@@ -93,11 +104,11 @@ public class RiceGameManager : MonoBehaviour
 
     private void GenerateParticles(float mixValue)
     {
-        _particleCD += mixValue;
-        if (_particleCD >= 10)
+        _particleCounter += mixValue;
+        if (_particleCounter >= 10)
         {
             ps.Play();
-            _particleCD -= 10;
+            _particleCounter -= 10;
         }
     }
 
@@ -154,19 +165,31 @@ public class RiceGameManager : MonoBehaviour
 
     private void GradeScore()
     {
-        
-        
+        var totalTime =  Time.time - _startTime;
+        isGraded = true;
+        if (totalTime <= perfectTime)
+        {
+            finalGrade = Grades.Perfect;
+        } else if (totalTime <= goodTime)
+        {
+            finalGrade = Grades.Good;
+        }
+        else
+        {
+            finalGrade = Grades.Bad;
+        }
+        Debug.Log(totalTime +" "+finalGrade);
     }
 
-    private void ClickOnstarted(InputAction.CallbackContext obj)
+    private void ClickOnStarted(InputAction.CallbackContext obj)
     {
-        Debug.Log("ClickOnstarted");
+        Debug.Log("ClickOnStarted");
         _isDragging = true;
     }
     
-    private void ClickOncanceled(InputAction.CallbackContext obj)
+    private void ClickOnCanceled(InputAction.CallbackContext obj)
     {
-        Debug.Log("ClickOncanceled");
+        Debug.Log("ClickOnCanceled");
         _isDragging = false;
     }
 }
