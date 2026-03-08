@@ -37,8 +37,6 @@ public class StallUIManager : MonoBehaviour
     public StallArea[] stallList;
     public StallListUIPanel[] stallSlots;
 
-
-
     public StallFoodData[] availableFoods;
 
     private StallFoodData currentFood;
@@ -238,5 +236,11 @@ public class StallUIManager : MonoBehaviour
         UIManager.Instance.CloseCurrentPanel();
     }
 
+    public void RestockPressed()
+    {
+        if (!StatsManager.Instance.TrySpendEnergy(1))
+        return;
 
+        MinigameManager.Instance.OpenMinigame(currentStall.assignedFood.minigameType);
+    }
 }

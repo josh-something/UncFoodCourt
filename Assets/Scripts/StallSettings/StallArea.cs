@@ -101,5 +101,6 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
         isUnlocked = PlayerPrefs.GetInt(stallAreaData.stallID, 0) == 1;
     }
     
+
     
 }

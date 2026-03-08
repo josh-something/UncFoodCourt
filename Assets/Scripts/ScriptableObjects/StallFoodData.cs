@@ -22,5 +22,14 @@ public class StallFoodData : ScriptableObject
     public int maxStock = 10;
     public float upgradeMultiplier = 0.25f;
 
+    [Header("For minigames")]
+    public MinigameType minigameType;
     
+}
+
+public enum MinigameType
+{
+    Burger,
+    Sundae,
+    Pizza
 }

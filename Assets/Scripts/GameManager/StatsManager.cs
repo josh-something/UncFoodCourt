@@ -106,28 +106,30 @@ public class StatsManager : MonoBehaviour
 
     public float GetGold() => goldBars;
 
-
-    public int Energy
-    {
-        get => energy;
-        set
-        {
-            energy = Mathf.Clamp(value, 0, maxEnergy);
-            OnEnergyChanged?.Invoke(energy, maxEnergy);
-        }
-    }
-
     public void AddEnergy(int amount)
     {
-        Energy += amount;
+        energy += amount;
     }
 
     public void SpendEnergy(int amount)
     {
-        Energy -= amount;
+        energy -= amount;
     }
 
+    public bool TrySpendEnergy(int amount) // Returns true if energy was successfully spent, false if not enough energy
+    {
+        if (energy < amount)
+            return false;
+
+        energy -= amount;
+        OnEnergyChanged?.Invoke(energy, maxEnergy);
+        return true;
+    } 
+
+    public int GetEnergy() => energy;
+
     public int GetMaxEnergy() => maxEnergy;
+
 
     public bool IsFoodPurchased(StallFoodData food)
     {

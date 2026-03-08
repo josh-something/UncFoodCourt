@@ -18,7 +18,7 @@ public class UpdateEnergy : MonoBehaviour
     private void Start()
     {
         energyText = GetComponent<TMP_Text>();
-        UpdateText(StatsManager.Instance.Energy, 10);
+        UpdateText(StatsManager.Instance.GetEnergy(), StatsManager.Instance.GetMaxEnergy());
     }
 
     private void UpdateText(float current, float max)
