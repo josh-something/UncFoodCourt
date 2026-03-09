@@ -24,6 +24,7 @@ public class MinigameManager : MonoBehaviour
 
     public void OpenMinigame(MinigameType type)
     {
+        
         switch (type)
         {
             case MinigameType.Burger:

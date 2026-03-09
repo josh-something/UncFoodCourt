@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     [SerializeField] private GameObject BackgroundOverlay;
+    [SerializeField] private GameObject MinigameOverlay;
 
     private GameObject currentOpenPanel;
 
@@ -50,4 +51,30 @@ public class UIManager : MonoBehaviour
         BackgroundOverlay.SetActive(false);
         InputLocked = false;
     }
+
+    public void OpenMinigamePanel(GameObject panel)
+    {
+
+        if (currentOpenPanel != null && currentOpenPanel != panel) // Close current panel if it's different from the one being opened
+        {
+            currentOpenPanel.SetActive(false);
+        }
+        currentOpenPanel = panel;
+        panel.SetActive(true);
+        Time.timeScale = 0f;
+        MinigameOverlay.SetActive(true);
+        InputLocked = true;
+    }
+
+    public void CloseMinigamePanel() // Call this to close whatever panel is currently open
+    {
+        if (currentOpenPanel != null)
+        {
+            currentOpenPanel.SetActive(false);
+            currentOpenPanel = null;
+        }
+        Time.timeScale = 1f;
+        MinigameOverlay.SetActive(false);
+        InputLocked = false;
+    } 
 }
