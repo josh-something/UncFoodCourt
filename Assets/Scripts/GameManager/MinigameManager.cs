@@ -8,7 +8,9 @@ public class MinigameManager : MonoBehaviour
     [Header("Minigame Panels")]
     public GameObject burgerMinigamePanel;
     public GameObject pizzaMinigamePanel;
-    public GameObject sundaeMinigamePanel;
+    public GameObject sundaeMinigamePanel;  
+
+    public GameObject MinigameObject; // The parent object that contains all minigame panels, used to toggle visibility
 
     private void Awake()
     {
@@ -28,12 +30,15 @@ public class MinigameManager : MonoBehaviour
         switch (type)
         {
             case MinigameType.Burger:
+                MinigameObject.SetActive(true);
                 UIManager.Instance.OpenPanel(burgerMinigamePanel);
                 break;
             case MinigameType.Pizza:
+                MinigameObject.SetActive(true);
                 UIManager.Instance.OpenPanel(pizzaMinigamePanel);
                 break;
             case MinigameType.Sundae:
+                MinigameObject.SetActive(true);
                 UIManager.Instance.OpenPanel(sundaeMinigamePanel);
                 break;
         }
