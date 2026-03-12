@@ -31,15 +31,15 @@ public class MinigameManager : MonoBehaviour
         {
             case MinigameType.Burger:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenPanel(burgerMinigamePanel);
+                UIManager.Instance.OpenMinigamePanel(burgerMinigamePanel);
                 break;
             case MinigameType.Pizza:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenPanel(pizzaMinigamePanel);
+                UIManager.Instance.OpenMinigamePanel(pizzaMinigamePanel);
                 break;
             case MinigameType.Sundae:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenPanel(sundaeMinigamePanel);
+                UIManager.Instance.OpenMinigamePanel(sundaeMinigamePanel);
                 break;
         }
     }

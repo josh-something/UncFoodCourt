@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
 
     public static bool InputLocked;
 
+    [Header("Camera")]
+    public GameObject mainCam;
+    public GameObject minigameCam;
+
     private void Awake()
     {
         Instance = this;
@@ -59,9 +63,13 @@ public class UIManager : MonoBehaviour
         {
             currentOpenPanel.SetActive(false);
         }
+        mainCam.SetActive(false);
+        minigameCam.SetActive(true);
+
         currentOpenPanel = panel;
         panel.SetActive(true);
-        Time.timeScale = 0f;
+
+        
         MinigameOverlay.SetActive(true);
         InputLocked = true;
     }
@@ -73,7 +81,9 @@ public class UIManager : MonoBehaviour
             currentOpenPanel.SetActive(false);
             currentOpenPanel = null;
         }
-        Time.timeScale = 1f;
+        mainCam.SetActive(true);
+        minigameCam.SetActive(false);
+        
         MinigameOverlay.SetActive(false);
         InputLocked = false;
     } 
