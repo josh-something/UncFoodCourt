@@ -15,9 +15,10 @@ MonoBehaviour:
   stallFoodID: 201
   stallFoodName: Hour Burger
   stallFoodDescription: My Burger, Your Burger, Hour Burger
-  stallFoodImage: {fileID: -187105095926027218, guid: 46b38d3a7f1e618438012db28ba9c816, type: 3}
+  stallFoodImage: {fileID: 21300000, guid: bf18739bc228ad343af6058f8b36a3ee, type: 3}
   stallFoodIcon: {fileID: 2130535880278150251, guid: 5fd6c5e9288c08543a941beca767caf3, type: 3}
   unlockPrice: 690
   baseIncome: 30
   maxStock: 10
   upgradeMultiplier: 0.25
+  minigameType: 0

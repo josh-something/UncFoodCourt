@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 104960712611380395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: StallUIManager, Assembly-CSharp
+        m_MethodName: RestockPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &433564548910799767
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,9 +159,9 @@ Transform:
   m_GameObject: {fileID: 433564548910799767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0261, y: 0.004, z: -1}
-  m_LocalScale: {x: 2.1506672, y: 4.109702, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.01, y: 0.06, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 975811985335746012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -197,8 +209,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.85882354}
+  m_Sprite: {fileID: 1766295059477080820, guid: 5801bcf637c6b0c47b50f30ab37686ca, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -645,8 +657,8 @@ Transform:
   m_GameObject: {fileID: 8443950460230528133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0207, y: 0.0009, z: -0.33}
-  m_LocalScale: {x: 2.1276882, y: 4.097222, z: 1}
+  m_LocalPosition: {x: 0.0207, y: 0.4, z: -0.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 975811985335746012}
@@ -695,8 +707,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5518868, g: 0.9518524, b: 1, a: 1}
+  m_Sprite: {fileID: -8706216927901673735, guid: 35aeb0a3403c9c541a6899031c432f27, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
