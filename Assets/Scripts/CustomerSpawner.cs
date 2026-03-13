@@ -22,13 +22,13 @@ public class CustomerSpawner : MonoBehaviour
         spawnRoutine = StartCoroutine(SpawnRoutine()); //customer spawner, starts immediately
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.C)) //testing placeholder
-        {
-            SpawnCustomer();
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyUp(KeyCode.C)) //testing placeholder
+    //     {
+    //         SpawnCustomer();
+    //     }
+    // }
 
     IEnumerator SpawnRoutine()
     {
@@ -56,7 +56,8 @@ public class CustomerSpawner : MonoBehaviour
     void SpawnCustomer() 
     {
         GameObject customerObject = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity); //prefab spawn at spawnPoint game object
-        CustomerManager.Instance.NewCustomerArrived(customerObject); //calls and notifies customer manager script that a cusomter is active in the scene
+        Customer customer = customerObject.GetComponent<Customer>();
+        CustomerManager.Instance.ProcessNewCustomer(customer); //calls and notifies customer manager script that a cusomter is active in the scene
         currentCustomers++; //add to customer count
     }
 

@@ -15,4 +15,4 @@ MonoBehaviour:
   StallImage: {fileID: 2800000, guid: 54af60d343d3e3b458ad7e97dd60dd04, type: 3}
   StallName: Shawarma Hut
   StallDescription: "\"You can't out \nShawarma the Hut\"\r"
-  StallPrice: 7500
+  StallPrice: 2185

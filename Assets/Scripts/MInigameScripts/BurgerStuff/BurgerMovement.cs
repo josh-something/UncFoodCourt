@@ -12,17 +12,24 @@ public class BurgerMovement : MonoBehaviour
 
     private bool canReceiveInput = true; // NEW
 
+    public Camera minigameCamera; // Reference to the minigame camera
+
     // manages the burger's movements and how you control it (for individual parts)
 
-    void Start()
-{
-    Camera mainCamera = Camera.main;
-
-        float distance = Mathf.Abs(mainCamera.transform.position.z);
-        screenBounds = mainCamera.ScreenToWorldPoint(
-        new Vector3(Screen.width, Screen.height, distance)
-    );
-}
+    void OnEnable()
+    {   
+            if (minigameCamera == null)
+        {
+            Debug.LogError("Minigame Camera not assigned!");
+            return;
+        }
+        Debug.Log(minigameCamera.name);
+        float distance = Mathf.Abs(minigameCamera.transform.position.z);
+        screenBounds = minigameCamera.ScreenToWorldPoint
+        (
+            new Vector3(Screen.width, Screen.height, distance)
+        );
+    }
     
 
     void Update()
@@ -73,6 +80,10 @@ public class BurgerMovement : MonoBehaviour
         StartCoroutine(BurgerManager.instance.GetBurgerPart());
 
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        if (rb == null)
+        rb = gameObject.AddComponent<Rigidbody2D>();
+
+
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb.gravityScale = 1f;
     }

@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-
     private bool willBuy;
+    private StallArea targetStall;
 
-    public void Initialize(bool buyingDecision)
+    public void Initialize(bool buyingDecision, StallArea stall)
     {
         willBuy = buyingDecision;
+        targetStall = stall;
 
         if (willBuy)
         {
-            BuyFood();
+            TryBuyFood();
         }
         else
         {
@@ -19,12 +20,31 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void BuyFood()
+    public void TryBuyFood()
     {
-        // Logic for buying food
-        Debug.Log("Customer bought food!");
-        
-        StatsManager.Instance.coins += 50;
+        if (targetStall == null || !targetStall.HasFood())
+        {
+            LeaveWithoutBuying();
+            return;
+        }
+
+        FoodStallUpgrades upgrades = targetStall.GetComponent<FoodStallUpgrades>();
+
+        if (upgrades == null)
+        {
+            LeaveWithoutBuying();
+            return;
+        }
+
+        bool success = upgrades.TryProcessOrder();
+
+        if (!success)
+        {
+            LeaveWithoutBuying();
+            return;
+        }
+        Debug.Log("Customer bought from " + targetStall.name);
+
         Destroy(gameObject, 2f);
     }
 
