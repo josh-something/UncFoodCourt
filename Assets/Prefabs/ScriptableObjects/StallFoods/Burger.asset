@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fed79d109d9c24a94a040db2e370c9, type: 3}
+  m_Name: Burger
+  m_EditorClassIdentifier: 
+  stallFoodID: 201
+  stallFoodName: Hour Burger
+  stallFoodDescription: My Burger, Your Burger, Hour Burger
+  stallFoodImage: {fileID: 21300000, guid: bf18739bc228ad343af6058f8b36a3ee, type: 3}
+  stallFoodIcon: {fileID: 2130535880278150251, guid: 5fd6c5e9288c08543a941beca767caf3, type: 3}
+  unlockPrice: 690
+  baseIncome: 30
+  maxStock: 10
+  upgradeMultiplier: 0.25
+  minigameType: 0

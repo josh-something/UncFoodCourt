@@ -15,4 +15,4 @@ MonoBehaviour:
   StallImage: {fileID: 2800000, guid: 54af60d343d3e3b458ad7e97dd60dd04, type: 3}
   StallName: Pizza Shack
   StallDescription: "\"The Pizza Craze \nStarts Here\"\r\n"
-  StallPrice: 10000
+  StallPrice: 3335

@@ -17,7 +17,7 @@ public class UpdateCurrency : MonoBehaviour
     
     private void Start()
     {
-        UpdateValue(StatsManager.Instance.coins);
+        UpdateValue(StatsManager.Instance.GetCoins());
     }
 
     private void UpdateValue(float value)
