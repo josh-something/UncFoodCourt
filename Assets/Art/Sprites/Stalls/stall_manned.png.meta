@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      stall_manned_0: -4193508173867576832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
