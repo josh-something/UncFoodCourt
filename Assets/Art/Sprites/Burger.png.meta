@@ -1,37 +1,28 @@
 fileFormatVersion: 2
-guid: 5fd6c5e9288c08543a941beca767caf3
+guid: bfa956ee68bc33a469cc72238b0abcb0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1161201145128540330
-    second: Icons_0
+      213: 731375368619335737
+    second: Burger_0
   - first:
-      213: 2130535880278150251
-    second: Icons_1
+      213: -5416761566585485788
+    second: Burger_1
   - first:
-      213: 184950751378207249
-    second: Icons_2
+      213: 6088408993273722539
+    second: Burger_2
   - first:
-      213: 1202984965197363600
-    second: Icons_3
+      213: 4537287038477898771
+    second: Burger_3
   - first:
-      213: 5543941588292853863
-    second: Icons_4
+      213: 8146681307637377715
+    second: Burger_4
   - first:
-      213: -1863859237976802683
-    second: Icons_5
+      213: 4982797099265550792
+    second: Burger_5
   - first:
-      213: 7576617242518483205
-    second: Icons_6
-  - first:
-      213: 7374845061861626600
-    second: Icons_7
-  - first:
-      213: -6931339683150358059
-    second: Icons_8
-  - first:
-      213: -8179040606652740800
-    second: Icons_9
+      213: 1273648356092958877
+    second: Burger_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -74,7 +65,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -127,221 +118,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icons_0
+      name: Burger_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 82
-        width: 32
-        height: 23
+        x: 27
+        y: 40
+        width: 43
+        height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa8d9280a4a6d1010800000000000000
-      internalID: 1161201145128540330
+      spriteID: 930a604d50e562a00800000000000000
+      internalID: 731375368619335737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_1
+      name: Burger_1
       rect:
         serializedVersion: 2
-        x: 14
-        y: 51
-        width: 16
-        height: 14
+        x: 79
+        y: 66
+        width: 38
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b6c0435581f219d10800000000000000
-      internalID: 2130535880278150251
+      spriteID: 4260faeed0cc3d4b0800000000000000
+      internalID: -5416761566585485788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_2
+      name: Burger_2
       rect:
         serializedVersion: 2
-        x: 29
-        y: 65
-        width: 14
-        height: 14
+        x: 81
+        y: 55
+        width: 34
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 112f6dc7ab3119200800000000000000
-      internalID: 184950751378207249
+      spriteID: ba6bf5bb8bf5e7450800000000000000
+      internalID: 6088408993273722539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_3
+      name: Burger_3
       rect:
         serializedVersion: 2
-        x: 44
-        y: 51
-        width: 12
-        height: 14
+        x: 77
+        y: 47
+        width: 42
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09979b0c37cd1b010800000000000000
-      internalID: 1202984965197363600
+      spriteID: 314957c958ea7fe30800000000000000
+      internalID: 4537287038477898771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_4
+      name: Burger_4
       rect:
         serializedVersion: 2
-        x: 57
-        y: 65
-        width: 14
-        height: 14
+        x: 77
+        y: 36
+        width: 43
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 760e5b1608900fc40800000000000000
-      internalID: 5543941588292853863
+      spriteID: 3ba6a008c73de0170800000000000000
+      internalID: 8146681307637377715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_5
+      name: Burger_5
       rect:
         serializedVersion: 2
-        x: 15
-        y: 23
-        width: 14
-        height: 14
+        x: 81
+        y: 27
+        width: 34
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58aff01f5ed3226e0800000000000000
-      internalID: -1863859237976802683
+      spriteID: 8c9e191df83762540800000000000000
+      internalID: 4982797099265550792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_6
+      name: Burger_6
       rect:
         serializedVersion: 2
-        x: 31
-        y: 37
-        width: 11
-        height: 14
+        x: 78
+        y: 16
+        width: 40
+        height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 501f96b4d3d852960800000000000000
-      internalID: 7576617242518483205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_7
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 23
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8e25ec99286b85660800000000000000
-      internalID: 7374845061861626600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_8
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 38
-        width: 16
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d91140384feecf90800000000000000
-      internalID: -6931339683150358059
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_9
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 9
-        width: 16
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04bc7f417e53e7e80800000000000000
-      internalID: -8179040606652740800
+      spriteID: d985ea98e68eca110800000000000000
+      internalID: 1273648356092958877
       vertices: []
       indices: 
       edges: []
@@ -350,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 01944169218ec0b4d8cccc538a18443c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -359,17 +284,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Icons_0: 1161201145128540330
-      Icons_1: 2130535880278150251
-      Icons_2: 184950751378207249
-      Icons_3: 1202984965197363600
-      Icons_4: 5543941588292853863
-      Icons_5: -1863859237976802683
-      Icons_6: 7576617242518483205
-      Icons_7: 7374845061861626600
-      Icons_8: -6931339683150358059
-      Icons_9: -8179040606652740800
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
