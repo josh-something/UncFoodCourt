@@ -14,21 +14,46 @@ public class BurgerMovement : MonoBehaviour
 
     public Camera minigameCamera; // Reference to the minigame camera
 
+    float objectWidth;
+
+    void Start()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            objectWidth = sr.bounds.extents.x;
+        }
+    }
+
     // manages the burger's movements and how you control it (for individual parts)
 
     void OnEnable()
     {   
-            if (minigameCamera == null)
+        //     if (minigameCamera == null)
+        // {
+        //     Debug.LogError("Minigame Camera not assigned!");
+        //     return;
+        // }
+        // Debug.Log(minigameCamera.name);
+        // float distance = Mathf.Abs(minigameCamera.transform.position.z);
+        // screenBounds = minigameCamera.ScreenToWorldPoint
+        // (
+        //     new Vector3(Screen.width, Screen.height, distance)
+        // );
+
+        if (minigameCamera == null)
         {
             Debug.LogError("Minigame Camera not assigned!");
             return;
         }
-        Debug.Log(minigameCamera.name);
+
         float distance = Mathf.Abs(minigameCamera.transform.position.z);
-        screenBounds = minigameCamera.ScreenToWorldPoint
-        (
-            new Vector3(Screen.width, Screen.height, distance)
+
+        Vector3 rightEdge = minigameCamera.ScreenToWorldPoint(
+            new Vector3(Screen.width, Screen.height / 2f, distance)
         );
+
+        screenBounds = new Vector2(rightEdge.x, 0);
     }
     
 
