@@ -66,7 +66,6 @@ public class MinigameManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        BurgerManager.instance.ResetMinigame();
         UIManager.Instance.CloseMinigamePanel();
     }
 

@@ -97,4 +97,10 @@ public class UIManager : MonoBehaviour
         MinigameOverlay.SetActive(false);
         InputLocked = false;
     } 
+
+    
+
+
+
+
 }

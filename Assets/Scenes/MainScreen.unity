@@ -20280,7 +20280,7 @@ GameObject:
   - component: {fileID: 8817934667050105066}
   m_Layer: 7
   m_Name: TopBun
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20359,12 +20359,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerParts:
-  - {fileID: 1675135005797333496}
-  - {fileID: 5385815705442974280}
-  - {fileID: 2551153905030715006}
-  - {fileID: 5904229833661450761}
-  - {fileID: 5351411049401236001}
   - {fileID: 8097352178781818965}
+  - {fileID: 5351411049401236001}
+  - {fileID: 5904229833661450761}
+  - {fileID: 2551153905030715006}
+  - {fileID: 5385815705442974280}
+  - {fileID: 1675135005797333496}
   spawnPoint: {fileID: 5450120322096757463}
 --- !u!114 &1818660842773741310
 MonoBehaviour:
@@ -21169,7 +21169,7 @@ GameObject:
   - component: {fileID: 543979267425322635}
   m_Layer: 7
   m_Name: Tomato
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22943,7 +22943,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -5416761566585485788, guid: bfa956ee68bc33a469cc72238b0abcb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -23251,7 +23251,7 @@ GameObject:
   - component: {fileID: 7242848665782605285}
   m_Layer: 7
   m_Name: Cheese
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23279,7 +23279,7 @@ GameObject:
   - component: {fileID: 8590094681893537207}
   m_Layer: 7
   m_Name: Pickles
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23534,7 +23534,7 @@ GameObject:
   - component: {fileID: 5454797907301837112}
   m_Layer: 7
   m_Name: Letuce
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24555,7 +24555,7 @@ GameObject:
   - component: {fileID: 755347629759084897}
   m_Layer: 7
   m_Name: Patty
-  m_TagString: Burger
+  m_TagString: BurgerPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24573,10 +24573,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerPlacedTxt: {fileID: 5324823516002496877}
-  burgerCenteredTxt: {fileID: 1455555515598475112}
   placed: 0
   centered: 0
   missed: 0
+  burgerSpawn: {fileID: 0}
+  finishedPanel: {fileID: 1181100088}
 --- !u!114 &8261491459733821732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25125,7 +25126,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_FlipX: 0

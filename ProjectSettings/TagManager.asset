@@ -9,6 +9,7 @@ TagManager:
   - KillBox
   - Burger
   - MiniGameCam
+  - BurgerPart
   layers:
   - Default
   - TransparentFX
