@@ -197,6 +197,8 @@ public class StallUIManager : MonoBehaviour
         RefreshStallInfoUI();
     }
 
+
+    
     public void OnClickUpgrade() //Upgrade Button Clicked
     {
 
@@ -214,20 +216,26 @@ public class StallUIManager : MonoBehaviour
 
     public void OpenStallListUIPanel()
     {
-        UIManager.Instance.OpenPanel(stallListPanel);
+        // UIManager.Instance.OpenPanel(stallListPanel);
+
+        // for (int i = 0; i < stallSlots.Length; i++)
+        // {
+        //     StallArea stall = stallList[i];
+
+        //     if (stall.assignedFood == null)
+        //     {
+        //         stallSlots[i].EmptyStall();
+        //     }
+        //     else
+        //     {
+        //         stallSlots[i].StallWithFood(stall.assignedFood);
+        //     }
+        // }
+            UIManager.Instance.OpenPanel(stallListPanel);
 
         for (int i = 0; i < stallSlots.Length; i++)
         {
-            StallArea stall = stallList[i];
-
-            if (stall.assignedFood == null)
-            {
-                stallSlots[i].EmptyStall();
-            }
-            else
-            {
-                stallSlots[i].StallWithFood(stall.assignedFood);
-            }
+            stallSlots[i].SetStall(stallList[i]); 
         }
     }
 
@@ -238,9 +246,21 @@ public class StallUIManager : MonoBehaviour
 
     public void RestockPressed()
     {
+        if (currentStall == null || currentStall.assignedFood == null)
+        return;
+
         if (!StatsManager.Instance.TrySpendEnergy(1))
         return;
 
+        UIManager.Instance.CloseCurrentPanel();
+        Time.timeScale = 1f;
+
         MinigameManager.Instance.OpenMinigame(currentStall.assignedFood.minigameType);
     }
+
+    public StallArea GetCurrentStall()
+    {
+        return currentStall;
+    }
+     
 }

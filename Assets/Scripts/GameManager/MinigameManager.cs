@@ -12,6 +12,8 @@ public class MinigameManager : MonoBehaviour
 
     public GameObject MinigameObject; // The parent object that contains all minigame panels, used to toggle visibility
 
+    public GameObject gameFinishedPanel;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -44,21 +46,35 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    // public void StartBurgerMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(burgerMinigamePanel);
+    public void CloseFinishedGame()
+    {
+        gameFinishedPanel.SetActive(false);
 
-    // }
+        StallArea stall = StallUIManager.Instance.GetCurrentStall();
 
-    // public void StartPizzaMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(pizzaMinigamePanel);
-    // }
+        if (stall != null && stall.assignedFood != null)
+        {
+            FoodStallUpgrades upgrades = stall.GetComponent<FoodStallUpgrades>();
 
-    // public void StartSundaeMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(sundaeMinigamePanel);
-    // }
+            if (upgrades != null)
+            {
+                upgrades.currentStock += 3;
+
+                int maxStock = stall.assignedFood.maxStock;
+                upgrades.currentStock = Mathf.Min(upgrades.currentStock, maxStock);
+            }
+        }
+
+        Time.timeScale = 1f;
+        BurgerManager.instance.ResetMinigame();
+        UIManager.Instance.CloseMinigamePanel();
+    }
+
+    public void EndMinigame()
+    {
+        Time.timeScale = 0f;
+        gameFinishedPanel.SetActive(true);
+    }
 
 
 }

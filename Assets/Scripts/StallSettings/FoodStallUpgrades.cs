@@ -35,11 +35,11 @@ public class FoodStallUpgrades : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.zKey.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             currentStock--;
         }
-        if (Keyboard.current.xKey.wasPressedThisFrame || Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             currentStock++;
         }
@@ -111,7 +111,7 @@ public class FoodStallUpgrades : MonoBehaviour
         level = 1;
 
         if (stallArea.assignedFood != null)
-            currentStock = stallArea.assignedFood.maxStock;
+            currentStock = 5;
     }
 
     public bool TryProcessOrder()
