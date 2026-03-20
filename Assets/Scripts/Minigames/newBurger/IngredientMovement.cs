@@ -22,7 +22,7 @@ public class IngredientMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f; // no gravity while moving
-        miniGame = FindObjectOfType<BurgerMiniGame>();
+        miniGame = Object.FindFirstObjectByType<BurgerMiniGame>();
     }
 
     private void Update()

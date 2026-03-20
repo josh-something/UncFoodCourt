@@ -127,17 +127,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 856304207603811010, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 330.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1938355483033543142, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
       propertyPath: m_Name
       value: BurgerMiniGame
       objectReference: {fileID: 0}
-    - target: {fileID: 7850604341586839274, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4632373276148773576, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964693161074815154, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.67
       objectReference: {fileID: 0}
     - target: {fileID: 8085708720857531731, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 8085708720857531731, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562016457963065783, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

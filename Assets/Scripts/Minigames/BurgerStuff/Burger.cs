@@ -1,16 +1,16 @@
 using UnityEngine;
 using System.Collections;
-using  TMPro;
+using TMPro;
 
 public class Burger : MonoBehaviour
 {
     //checks if burger is centered and manages the values(?)
     [SerializeField]
-    private float minX,maxX;
-    private int maxScore = 1,scoreGiven,minScore = 0;
+    private float minX, maxX;
+    private int maxScore = 1, scoreGiven, minScore = 0;
     private bool isStatic = false;
     private bool scoreApplied = false;
-    
+
     void OnEnable()
     {
         isStatic = false;
@@ -28,7 +28,7 @@ public class Burger : MonoBehaviour
 
 
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("BurgerZone"))
         {
@@ -39,16 +39,16 @@ public class Burger : MonoBehaviour
                 BurgerManager.instance.GetBurgerPart()
             );
 
-            
+
         }
 
         if (other.CompareTag("KillBox"))
         {
-        BurgerManager.instance.missed++;
-        BurgerManager.instance.CheckMinigameEnd();
+            BurgerManager.instance.missed++;
+            BurgerManager.instance.CheckMinigameEnd();
 
-        if (BurgerManager.instance.placed + BurgerManager.instance.missed 
-            < BurgerManager.instance.burgerSpawn.TotalParts())
+            if (BurgerManager.instance.placed + BurgerManager.instance.missed
+                < BurgerManager.instance.burgerSpawn.TotalParts())
             {
                 BurgerManager.instance.burgerSpawn.UnlockSpawn();
                 BurgerManager.instance.StartCoroutine(
@@ -56,7 +56,7 @@ public class Burger : MonoBehaviour
                 );
             }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
