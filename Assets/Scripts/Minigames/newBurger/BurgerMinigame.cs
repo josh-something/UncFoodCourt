@@ -13,6 +13,9 @@ public class BurgerMiniGame : MonoBehaviour
     private int stackedIngredients = 0;
     private int ingredientsFallen = 0;
 
+    private int totalIngredientsProcessed = 0;
+    private int maxIngredients = 6; // total number of ingredients in the minigame
+
     [Header("UI")]
     public GameObject endGamePanel;
     public TMP_Text finalScoreText;
@@ -28,9 +31,9 @@ public class BurgerMiniGame : MonoBehaviour
     {
         if (!canSpawnNext) return;
 
-        if (nextIngredientIndex >= 6)
+        if (nextIngredientIndex >= ingredientPrefabs.Length)
         {
-            EndGame();
+            // We no longer end the game here; handled in CheckGameEnd
             return;
         }
 
@@ -49,24 +52,40 @@ public class BurgerMiniGame : MonoBehaviour
     public void IngredientLanded(IngredientMovement ingredient)
     {
         stackedIngredients++;
+        totalIngredientsProcessed++;
+
         canSpawnNext = true;
-        SpawnNext();
+        CheckGameEnd();
     }
 
     // Called when ingredient falls
     public void IngredientFell(IngredientMovement ingredient)
     {
         ingredientsFallen++;
+        totalIngredientsProcessed++;
+
         canSpawnNext = true;
-        SpawnNext();
+        CheckGameEnd();
     }
 
-    int CalculateScore()
+    private void CheckGameEnd()
+    {
+        if (totalIngredientsProcessed >= maxIngredients)
+        {
+            EndGame();
+        }
+        else
+        {
+            SpawnNext();
+        }
+    }
+
+    private int CalculateScore()
     {
         return Mathf.Max(stackedIngredients - ingredientsFallen, 0);
     }
 
-    void EndGame()
+    private void EndGame()
     {
         int finalScore = CalculateScore();
 
@@ -75,7 +94,5 @@ public class BurgerMiniGame : MonoBehaviour
 
         Debug.Log("Final Score: " + finalScore);
         MinigameManager.Instance.EndMinigame();
-
-        //Time.timeScale = 0f; // pause game
     }
 }

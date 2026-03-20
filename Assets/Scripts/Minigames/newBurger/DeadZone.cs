@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
+    [Header("Reference to the MiniGame")]
+    public BurgerMiniGame burgerMiniGame; // assign in Inspector
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Only ingredients
-        if (other.CompareTag("Ingredient"))
-        {
-            // Get the IngredientMovement component
-            IngredientMovement ingredient = other.GetComponent<IngredientMovement>();
-            if (ingredient != null)
-            {
-                FindObjectOfType<BurgerMiniGame>().IngredientFell(ingredient);
-            }
 
-            Destroy(other.gameObject); // remove from scene
+        if (!other.CompareTag("Ingredient")) return;
+
+        IngredientMovement ingredient = other.GetComponent<IngredientMovement>();
+        if (ingredient != null && burgerMiniGame != null)
+        {
+            burgerMiniGame.IngredientFell(ingredient);
         }
+
+
+        Destroy(other.gameObject);
     }
 }

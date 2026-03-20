@@ -76,8 +76,8 @@ public class UIManager : MonoBehaviour
 
         currentOpenPanel = panel;
         panel.SetActive(true);
-        
-        MinigameOverlay.SetActive(true);
+
+        //  MinigameOverlay.SetActive(true);
         InputLocked = true;
     }
 
@@ -93,12 +93,12 @@ public class UIManager : MonoBehaviour
 
         mainUI.SetActive(true);
         // minigameUI.SetActive(false);
-        
+
         MinigameOverlay.SetActive(false);
         InputLocked = false;
-    } 
+    }
 
-    
+
 
 
 

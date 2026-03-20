@@ -5,12 +5,17 @@ public class MinigameManager : MonoBehaviour
     public static MinigameManager Instance { get; private set; }
 
     [Header("Minigame Panels")]
-    public GameObject burgerMinigamePanel;
     public GameObject pizzaMinigamePanel;
     public GameObject sundaeMinigamePanel;
+    public GameObject PanelBackgroundOverlay;
 
     [Header("Minigame Prefabs")]
     public GameObject burgerMinigamePrefab;
+    private GameObject burgerMinigameInstance; // To keep track of the instantiated burger minigame
+
+
+
+
 
     public GameObject MinigameObject; // The parent object that contains all minigame panels, used to toggle visibility
 
@@ -35,8 +40,9 @@ public class MinigameManager : MonoBehaviour
         {
             case MinigameType.Burger:
                 MinigameObject.SetActive(true);
-                // UIManager.Instance.OpenMinigamePanel(burgerMinigamePanel);
-                Instantiate(burgerMinigamePrefab, MinigameObject.transform); // Instantiate the burger minigame prefab as a child of the MinigameObject
+                burgerMinigameInstance = Instantiate(burgerMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
+
                 break;
             case MinigameType.Pizza:
                 MinigameObject.SetActive(true);
@@ -69,7 +75,7 @@ public class MinigameManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        Destroy(burgerMinigamePrefab); // Destroy the burger minigame instance
+        Destroy(burgerMinigameInstance); // Destroy the burger minigame instance
         UIManager.Instance.CloseMinigamePanel();
     }
 
