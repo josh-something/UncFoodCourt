@@ -5,15 +5,17 @@ public class MinigameManager : MonoBehaviour
     public static MinigameManager Instance { get; private set; }
 
     [Header("Minigame Panels")]
-    public GameObject pizzaMinigamePanel;
-    public GameObject sundaeMinigamePanel;
     public GameObject PanelBackgroundOverlay;
 
     [Header("Minigame Prefabs")]
     public GameObject burgerMinigamePrefab;
+    public GameObject pizzaMinigamePrefab;
+    public GameObject sundaeMinigamePrefab;
+
+    [Header("Minigame Instances")]
     private GameObject burgerMinigameInstance; // To keep track of the instantiated burger minigame
-
-
+    private GameObject pizzaMinigameInstance;
+    private GameObject sundaeMinigameInstance;
 
 
 
@@ -42,15 +44,16 @@ public class MinigameManager : MonoBehaviour
                 MinigameObject.SetActive(true);
                 burgerMinigameInstance = Instantiate(burgerMinigamePrefab, MinigameObject.transform);
                 UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
-
                 break;
             case MinigameType.Pizza:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenMinigamePanel(pizzaMinigamePanel);
+                pizzaMinigameInstance = Instantiate(pizzaMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
                 break;
             case MinigameType.Sundae:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenMinigamePanel(sundaeMinigamePanel);
+                sundaeMinigameInstance = Instantiate(sundaeMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
                 break;
         }
     }
@@ -75,7 +78,8 @@ public class MinigameManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        Destroy(burgerMinigameInstance); // Destroy the burger minigame instance
+
+        DestroyMinigameInstances();
         UIManager.Instance.CloseMinigamePanel();
     }
 
@@ -83,6 +87,27 @@ public class MinigameManager : MonoBehaviour
     {
         //Time.timeScale = 0f;
         gameFinishedPanel.SetActive(true);
+    }
+
+    private void DestroyMinigameInstances()
+    {
+        if (burgerMinigameInstance != null)
+        {
+            Destroy(burgerMinigameInstance);
+            burgerMinigameInstance = null;
+        }
+
+        if (pizzaMinigameInstance != null)
+        {
+            Destroy(pizzaMinigameInstance);
+            pizzaMinigameInstance = null;
+        }
+
+        if (sundaeMinigameInstance != null)
+        {
+            Destroy(sundaeMinigameInstance);
+            sundaeMinigameInstance = null;
+        }
     }
 
 
