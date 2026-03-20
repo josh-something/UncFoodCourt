@@ -28,7 +28,7 @@ public class BurgerMiniGame : MonoBehaviour
     {
         if (!canSpawnNext) return;
 
-        if (nextIngredientIndex >= ingredientPrefabs.Length)
+        if (nextIngredientIndex >= 6)
         {
             EndGame();
             return;
@@ -74,7 +74,8 @@ public class BurgerMiniGame : MonoBehaviour
         if (finalScoreText != null) finalScoreText.text = "Score: " + finalScore;
 
         Debug.Log("Final Score: " + finalScore);
+        MinigameManager.Instance.EndMinigame();
 
-        Time.timeScale = 0f; // pause game
+        //Time.timeScale = 0f; // pause game
     }
 }
