@@ -28,7 +28,7 @@ public class BurgerMovement : MonoBehaviour
     // manages the burger's movements and how you control it (for individual parts)
 
     void OnEnable()
-    {   
+    {
         //     if (minigameCamera == null)
         // {
         //     Debug.LogError("Minigame Camera not assigned!");
@@ -55,7 +55,7 @@ public class BurgerMovement : MonoBehaviour
 
         screenBounds = new Vector2(rightEdge.x, 0);
     }
-    
+
 
     void Update()
     {
@@ -94,6 +94,8 @@ public class BurgerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+
+            Debug.Log("Mouse Clicked - Starting to fall");
             StartFalling();
         }
     }
@@ -106,7 +108,7 @@ public class BurgerMovement : MonoBehaviour
 
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         if (rb == null)
-        rb = gameObject.AddComponent<Rigidbody2D>();
+            rb = gameObject.AddComponent<Rigidbody2D>();
 
 
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;

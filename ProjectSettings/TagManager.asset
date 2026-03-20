@@ -10,6 +10,8 @@ TagManager:
   - Burger
   - MiniGameCam
   - BurgerPart
+  - DeadZone
+  - Ingredient
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
@@ -8,7 +7,7 @@ public class MinigameManager : MonoBehaviour
     [Header("Minigame Panels")]
     public GameObject burgerMinigamePanel;
     public GameObject pizzaMinigamePanel;
-    public GameObject sundaeMinigamePanel;  
+    public GameObject sundaeMinigamePanel;
 
     public GameObject MinigameObject; // The parent object that contains all minigame panels, used to toggle visibility
 
@@ -28,7 +27,7 @@ public class MinigameManager : MonoBehaviour
 
     public void OpenMinigame(MinigameType type)
     {
-        
+
         switch (type)
         {
             case MinigameType.Burger:
