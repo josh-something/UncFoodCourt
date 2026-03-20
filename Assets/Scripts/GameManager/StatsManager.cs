@@ -25,7 +25,7 @@ public class StatsManager : MonoBehaviour
     
     public HashSet<StallFoodData> purchasedFoods = new HashSet<StallFoodData>();
 
-     private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -35,10 +35,17 @@ public class StatsManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Screen.SetResolution(1080, 1920, FullScreenMode.FullScreenWindow);
+        float targetAspect = 1080f / 1920f;
+        float windowAspect = (float)Screen.width / Screen.height;
+        float scaleHeight = windowAspect / targetAspect;
+
+        Camera.main.rect = new Rect(0, 0, 1, scaleHeight);
     }
 
 
-    private void Start()
+    void Start()
     {
         _previousCoins = coins;
         _previousGoldBars = goldBars;
@@ -46,6 +53,7 @@ public class StatsManager : MonoBehaviour
         OnCoinChanged?.Invoke(coins);
         OnGoldBarsChanged?.Invoke(goldBars);
         OnEnergyChanged?.Invoke(energy, maxEnergy);
+
     }
 
     private void Update()
