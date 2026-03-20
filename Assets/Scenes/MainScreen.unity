@@ -466,7 +466,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60546214}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1504677804}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OpenPanel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 397777469}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &60546214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,9 +926,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1504677805}
-        m_TargetAssemblyTypeName: StallUIManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1504677804}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: CloseCurrentPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1167,7 +1179,7 @@ RectTransform:
   m_Father: {fileID: 1238112215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2808,8 +2820,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1581338416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3357,7 +3369,7 @@ RectTransform:
   m_Father: {fileID: 254736536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3689,7 +3701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &393061293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3821,7 +3833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &397777470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4375,6 +4387,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434218815}
   m_CullTransparentMesh: 1
+--- !u!1 &435378382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435378384}
+  - component: {fileID: 435378383}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &435378383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435378382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930803a9975988d4e9daafc9490de377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1763775319}
+  sfxSource: {fileID: 1028750262}
+  musicSlider: {fileID: 115193249}
+  sfxSlider: {fileID: 64772286}
+  ButtonClickSFX: {fileID: 8300000, guid: 217947e13124ced43a1ae4d1c132c99a, type: 3}
+  CoinSFX: {fileID: 8300000, guid: a753bdfe40a47f64d99b99acd2d1e7ea, type: 3}
+  MinigameFinishSFX: {fileID: 8300000, guid: f7e2e84bfe5b9e4458bd97fcb9b80ef1, type: 3}
+  StallClickSFX: {fileID: 8300000, guid: 39e5c46e586469c4fa3c9f4f07fa0b50, type: 3}
+  UpgradeSFX: {fileID: 8300000, guid: 9384eba43c8c2664a8fce3a48f2a6237, type: 3}
+--- !u!4 &435378384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435378382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 383.4682, y: 1192.1422, z: -1.705785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447278101
 GameObject:
   m_ObjectHideFlags: 0
@@ -9491,8 +9556,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1293212706}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14491,7 +14556,6 @@ GameObject:
   - component: {fileID: 1504677803}
   - component: {fileID: 1504677804}
   - component: {fileID: 1504677805}
-  - component: {fileID: 1504677806}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -14646,22 +14710,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a88f5efe44e88b448e7db2b13781556, type: 2}
   - {fileID: 11400000, guid: a95f1269a7764ed47af453ced70a7b43, type: 2}
   - {fileID: 11400000, guid: 877b500c36b09774b97ab49d8b4dac93, type: 2}
---- !u!114 &1504677806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504677798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930803a9975988d4e9daafc9490de377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 1763775319}
-  sfxSource: {fileID: 1028750262}
-  musicSlider: {fileID: 115193249}
-  sfxSlider: {fileID: 64772286}
 --- !u!1 &1507459663
 GameObject:
   m_ObjectHideFlags: 0
@@ -21352,9 +21400,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1504677805}
-        m_TargetAssemblyTypeName: StallUIManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1504677804}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: CloseCurrentPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25459,3 +25507,4 @@ SceneRoots:
   - {fileID: 510171045}
   - {fileID: 1028750263}
   - {fileID: 1763775320}
+  - {fileID: 435378384}

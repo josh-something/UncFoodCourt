@@ -246,6 +246,7 @@ public class StallUIManager : MonoBehaviour
 
     public void RestockPressed()
     {
+        AudioManager.Instance.PlayClick();
         if (currentStall == null || currentStall.assignedFood == null)
         return;
 

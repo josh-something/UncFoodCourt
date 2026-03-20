@@ -102,6 +102,7 @@ public class FoodStallUpgrades : MonoBehaviour
 
         level++;
         Debug.Log("Upgraded to level " + level);
+        AudioManager.Instance.PlayUpgrade();
         return true;
 
     }
@@ -138,6 +139,7 @@ public class FoodStallUpgrades : MonoBehaviour
         currentStock--;
         StatsManager.Instance.AddCoins(income);
         popularityManager?.AddPopularity(2);
+        
 
         if (currentStock <= 3)
         {

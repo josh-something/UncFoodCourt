@@ -121,6 +121,7 @@ public class PizzaGameManager : MonoBehaviour
         finalGrade = grade;
         Debug.Log("Time:" + time + ", Grade: " + grade);
         instructionText.text = "Finish \n Time: " + time.ToString("F2") + ", Grade: " + grade;
-        MinigameManager.Instance.gameFinishedPanel.SetActive(true);
+        MinigameManager.Instance.EndMinigame();
+        AudioManager.Instance.PlayMinigameFinish();
     }
 }
