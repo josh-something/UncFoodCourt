@@ -43,7 +43,10 @@ public class StallListUIPanel : MonoBehaviour
 
     public void OnClickSlot()
     {
+        Debug.Log(stall); // should NOT be null
         if (stall.assignedFood != null)
             StallUIManager.Instance.OpenStallInfoPanel(stall);
     }
+
+    
 }

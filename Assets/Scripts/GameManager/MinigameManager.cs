@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
@@ -6,11 +5,23 @@ public class MinigameManager : MonoBehaviour
     public static MinigameManager Instance { get; private set; }
 
     [Header("Minigame Panels")]
-    public GameObject burgerMinigamePanel;
-    public GameObject pizzaMinigamePanel;
-    public GameObject sundaeMinigamePanel;  
+    public GameObject PanelBackgroundOverlay;
+
+    [Header("Minigame Prefabs")]
+    public GameObject burgerMinigamePrefab;
+    public GameObject pizzaMinigamePrefab;
+    public GameObject sundaeMinigamePrefab;
+
+    [Header("Minigame Instances")]
+    private GameObject burgerMinigameInstance; // To keep track of the instantiated burger minigame
+    private GameObject pizzaMinigameInstance;
+    private GameObject sundaeMinigameInstance;
+
+
 
     public GameObject MinigameObject; // The parent object that contains all minigame panels, used to toggle visibility
+
+    public GameObject gameFinishedPanel;
 
     private void Awake()
     {
@@ -26,39 +37,78 @@ public class MinigameManager : MonoBehaviour
 
     public void OpenMinigame(MinigameType type)
     {
-        
+
         switch (type)
         {
             case MinigameType.Burger:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenMinigamePanel(burgerMinigamePanel);
+                burgerMinigameInstance = Instantiate(burgerMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
                 break;
             case MinigameType.Pizza:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenMinigamePanel(pizzaMinigamePanel);
+                pizzaMinigameInstance = Instantiate(pizzaMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
                 break;
             case MinigameType.Sundae:
                 MinigameObject.SetActive(true);
-                UIManager.Instance.OpenMinigamePanel(sundaeMinigamePanel);
+                sundaeMinigameInstance = Instantiate(sundaeMinigamePrefab, MinigameObject.transform);
+                UIManager.Instance.OpenMinigamePanel(PanelBackgroundOverlay);
                 break;
         }
     }
 
-    // public void StartBurgerMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(burgerMinigamePanel);
+    public void CloseFinishedGame()
+    {
+        gameFinishedPanel.SetActive(false);
 
-    // }
+        StallArea stall = StallUIManager.Instance.GetCurrentStall();
 
-    // public void StartPizzaMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(pizzaMinigamePanel);
-    // }
+        if (stall != null && stall.assignedFood != null)
+        {
+            FoodStallUpgrades upgrades = stall.GetComponent<FoodStallUpgrades>();
 
-    // public void StartSundaeMinigame()
-    // {
-    //     UIManager.Instance.OpenPanel(sundaeMinigamePanel);
-    // }
+            if (upgrades != null)
+            {
+                upgrades.currentStock += 3;
+
+                int maxStock = stall.assignedFood.maxStock;
+                upgrades.currentStock = Mathf.Min(upgrades.currentStock, maxStock);
+            }
+        }
+
+        Time.timeScale = 1f;
+
+        DestroyMinigameInstances();
+        UIManager.Instance.CloseMinigamePanel();
+    }
+
+    public void EndMinigame()
+    {
+        //Time.timeScale = 0f;
+        gameFinishedPanel.SetActive(true);
+    }
+
+    private void DestroyMinigameInstances()
+    {
+        if (burgerMinigameInstance != null)
+        {
+            Destroy(burgerMinigameInstance);
+            burgerMinigameInstance = null;
+        }
+
+        if (pizzaMinigameInstance != null)
+        {
+            Destroy(pizzaMinigameInstance);
+            pizzaMinigameInstance = null;
+        }
+
+        if (sundaeMinigameInstance != null)
+        {
+            Destroy(sundaeMinigameInstance);
+            sundaeMinigameInstance = null;
+        }
+    }
 
 
 }

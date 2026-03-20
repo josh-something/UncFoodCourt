@@ -21,3 +21,4 @@ MonoBehaviour:
   baseIncome: 145
   maxStock: 10
   upgradeMultiplier: 0.25
+  minigameType: 2

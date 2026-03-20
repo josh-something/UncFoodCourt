@@ -9,6 +9,9 @@ TagManager:
   - KillBox
   - Burger
   - MiniGameCam
+  - BurgerPart
+  - DeadZone
+  - Ingredient
   layers:
   - Default
   - TransparentFX
@@ -17,10 +20,10 @@ TagManager:
   - Water
   - UI
   - MinigameLayer
+  - 
+  - Minigame UI
+  - PizzaMinigame
   - BurgerMinigame
-  - 
-  - 
-  - 
   - 
   - 
   - 
