@@ -36,8 +36,9 @@ public class StatsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        Screen.SetResolution(1080, 1920, FullScreenMode.FullScreenWindow);
-        float targetAspect = 1080f / 1920f;
+        //Screen.SetResolution(540, 960, FullScreenMode.FullScreenWindow);
+        Screen.SetResolution(540, 960, FullScreenMode.Windowed);
+        float targetAspect = 540f / 960f;
         float windowAspect = (float)Screen.width / Screen.height;
         float scaleHeight = windowAspect / targetAspect;
 
