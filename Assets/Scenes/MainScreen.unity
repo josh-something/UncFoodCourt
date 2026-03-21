@@ -6882,7 +6882,7 @@ MonoBehaviour:
   PanelBackgroundOverlay: {fileID: 821016653}
   burgerMinigamePrefab: {fileID: 1938355483033543142, guid: 1d52d1dafb0b6434d8a92a6801e0a0f7, type: 3}
   pizzaMinigamePrefab: {fileID: 666544092648270416, guid: 4ab9e41149e6a834e85c6fee1345b560, type: 3}
-  sundaeMinigamePrefab: {fileID: 962099614983966301, guid: c7eb2c56965a1454a9359ae5900fa5d4, type: 3}
+  sundaeMinigamePrefab: {fileID: 7222194188603902071, guid: 211f4e8a80b926f44a11a9766a87f6a9, type: 3}
   MinigameObject: {fileID: 510171044}
   gameFinishedPanel: {fileID: 1181100088}
 --- !u!1 &702741312
@@ -8434,7 +8434,7 @@ GameObject:
   - component: {fileID: 821016654}
   - component: {fileID: 821016655}
   - component: {fileID: 821016656}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Minigame Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20641,7 +20641,7 @@ Camera:
   m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1920
+    m_Bits: 3840
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
