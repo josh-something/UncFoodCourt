@@ -1,17 +1,35 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Cone : MonoBehaviour
 {
-    public Camera miniGameCamera; // assign the camera rendering to the RenderTexture
+    public Camera miniGameCamera; 
     private bool dragging;
     private float fixedY;
+    private Vector3 minX;
+    private Vector3 maxX;
 
     [SerializeField] private GameObject[] caughtScoops;
     private int caughtScoopsCount;
+    private InputAction Hold;
+
+    private void Awake()
+    {
+        Hold = InputSystem.actions.FindAction("Attack");
+    }
+
+    private void OnEnable()
+    {
+        Hold.started += StartDrag;
+        Hold.canceled += StopDrag;
+    }
 
     void Start()
     {
+        miniGameCamera = GameObject.Find("MinigameCamera").GetComponent<Camera>();
         fixedY = transform.position.y;
+        minX = miniGameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        maxX = miniGameCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));
     }
 
     void Update()
@@ -23,23 +41,19 @@ public class Cone : MonoBehaviour
 
         Vector3 worldPos = miniGameCamera.ScreenToWorldPoint(mousePos);
 
-        // Clamp X to camera view
-        Vector3 min = miniGameCamera.ViewportToWorldPoint(new Vector3(0, 0, mousePos.z));
-        Vector3 max = miniGameCamera.ViewportToWorldPoint(new Vector3(1, 1, mousePos.z));
-
-        worldPos.x = Mathf.Clamp(worldPos.x, min.x, max.x);
+        worldPos.x = Mathf.Clamp(worldPos.x, minX.x, maxX.x);
         worldPos.y = fixedY;
 
         transform.position = worldPos;
     }
 
     // Called from UI EventTrigger
-    public void StartDrag()
+    public void StartDrag(InputAction.CallbackContext ctx)
     {
         dragging = true;
     }
 
-    public void StopDrag()
+    public void StopDrag(InputAction.CallbackContext ctx)
     {
         dragging = false;
     }

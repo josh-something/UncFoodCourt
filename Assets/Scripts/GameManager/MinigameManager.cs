@@ -112,5 +112,9 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-
+    [ContextMenu("OpenSundayMinigame")]
+    public void OpenSundaeGame()
+    {
+        OpenMinigame(MinigameType.Sundae);
+    }
 }

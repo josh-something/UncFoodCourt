@@ -16,21 +16,19 @@ public class ScoopSpawner : MonoBehaviour
     private float currentSpeed;
     private bool movingRight = true;
     private Vector2 screenBounds;
-    private GameObject[] Scoops;
+    [SerializeField] private GameObject[] Scoops;
     private int scoopsToSpawn;
     private Camera miniGameCamera;
 
     void Start()
     {
-        // Find camera dynamically (for additive scene)
-        miniGameCamera = GameObject.FindGameObjectWithTag("MiniGameCam")?.GetComponent<Camera>();
+        miniGameCamera = GameObject.Find("MinigameCamera").GetComponent<Camera>();
         if (miniGameCamera == null)
         {
             Debug.LogError("MiniGameCam not found! Make sure the camera in Sundae scene is tagged correctly.");
             return;
         }
 
-        Scoops = GameObject.FindGameObjectsWithTag("Scoop");
         scoopsToSpawn = Scoops.Length;
 
         float distance = Mathf.Abs(miniGameCamera.transform.position.z - transform.position.z);
