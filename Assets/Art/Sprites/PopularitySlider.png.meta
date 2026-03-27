@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 5200d7b39fa4af647a2e61a45800c2e7
+guid: 9f31d53099043704cab77076953e2cff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8763091043125349992
-    second: Untitled2_20260214124833_0
-  - first:
-      213: 1244714076396259105
-    second: Untitled2_20260214124833_1
-  - first:
-      213: 5299312799240332037
-    second: Untitled2_20260214124833_2
-  - first:
-      213: 5099467261944619210
-    second: Untitled2_20260214124833_3
-  - first:
-      213: -8235269899716436043
-    second: Untitled2_20260214124833_4
+      213: -164432240796140767
+    second: PopularitySlider_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -125,56 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled2_20260214124833_0
+      name: PopularitySlider_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 78
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8913b18002f336680800000000000000
-      internalID: -8763091043125349992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled2_20260214124833_1
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 60
-        width: 15
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12707829bdc164110800000000000000
-      internalID: 1244714076396259105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled2_20260214124833_2
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 44
-        width: 16
+        x: 0
+        y: 0
+        width: 80
         height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 503a668f9e0fa8940800000000000000
-      internalID: 5299312799240332037
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled2_20260214124833_3
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 18
-        width: 22
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac061f3e472f4c640800000000000000
-      internalID: 5099467261944619210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled2_20260214124833_4
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 18
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bf5fe598a176bd80800000000000000
-      internalID: -8235269899716436043
+      spriteID: 12b79b98fb1d7bdf0800000000000000
+      internalID: -164432240796140767
       vertices: []
       indices: 
       edges: []
@@ -238,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled2_20260214124833_0: -8763091043125349992
-      Untitled2_20260214124833_1: 1244714076396259105
-      Untitled2_20260214124833_2: 5299312799240332037
-      Untitled2_20260214124833_3: 5099467261944619210
-      Untitled2_20260214124833_4: -8235269899716436043
+      PopularitySlider_0: -164432240796140767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

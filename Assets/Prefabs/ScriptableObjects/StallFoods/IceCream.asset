@@ -15,7 +15,7 @@ MonoBehaviour:
   stallFoodID: 202
   stallFoodName: Marvelous Sundae
   stallFoodDescription: MARVELOUS!
-  stallFoodImage: {fileID: -187105095926027218, guid: 46b38d3a7f1e618438012db28ba9c816, type: 3}
+  stallFoodImage: {fileID: 21300000, guid: d00b20a79e548b942ad69a65f59db4bc, type: 3}
   stallFoodIcon: {fileID: 1202984965197363600, guid: 5fd6c5e9288c08543a941beca767caf3, type: 3}
   unlockPrice: 750
   baseIncome: 50

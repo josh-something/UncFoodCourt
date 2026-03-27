@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.EventSystems;
 
 public class CameraDrag : MonoBehaviour
 {
@@ -20,7 +22,11 @@ public class CameraDrag : MonoBehaviour
 
     #endregion
 
-    private void Awake() => _mainCamera = Camera.main;
+    private void Awake() 
+    {
+        _mainCamera = Camera.main;
+        EnhancedTouchSupport.Enable();
+    } 
 
     private void Start()
     {
@@ -43,20 +49,26 @@ public class CameraDrag : MonoBehaviour
     public void OnDrag(InputAction.CallbackContext ctx)
     {
         _inFocus = !shadedBackgroundGameObj.activeSelf;
-        if (ctx.started) _origin = GetMousePosition;
+
+        if (ctx.started)
+            _origin = GetPointerPosition();
+
         _isDragging = ctx.started || ctx.performed;
+
+        if (ctx.canceled)
+            _isDragging = false;
     }
 
     private void LateUpdate()
     {
         if (!_isDragging || !_inFocus) return;
         
-        _difference = GetMousePosition - transform.position;
+        _difference = GetPointerPosition() - transform.position;
         
         _targetPosition = _origin - _difference;
         _targetPosition = GetCameraBounds();
 
-        transform.position = _targetPosition;
+        transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * 15f);
     }
 
     private Vector3 GetCameraBounds()
@@ -68,5 +80,19 @@ public class CameraDrag : MonoBehaviour
         );
     }
 
-    private Vector3 GetMousePosition => _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    private Vector3 GetPointerPosition()
+    {
+        Vector2 screenPos = Vector2.zero;
+
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            screenPos = Touchscreen.current.primaryTouch.position.ReadValue();
+        }
+        else if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        {
+            screenPos = Mouse.current.position.ReadValue();
+        }
+
+        return _mainCamera.ScreenToWorldPoint(screenPos);
+    }
 }
