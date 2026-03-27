@@ -118,11 +118,13 @@ public class StatsManager : MonoBehaviour
     public void AddEnergy(int amount)
     {
         energy += amount;
+        OnEnergyChanged?.Invoke(energy, maxEnergy);
     }
 
     public void SpendEnergy(int amount)
     {
-        energy -= amount;
+        energy = Mathf.Max(energy - amount, 0);
+        OnEnergyChanged?.Invoke(energy, maxEnergy);
     }
 
     public bool TrySpendEnergy(int amount) // Returns true if energy was successfully spent, false if not enough energy

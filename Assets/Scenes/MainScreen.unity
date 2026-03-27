@@ -1579,7 +1579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000030518, y: -0.000032425}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0.000061035, y: -0.0001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &139400534
@@ -3127,7 +3127,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraDrag, Assembly-CSharp
         m_MethodName: OnDrag
         m_Mode: 0
@@ -5395,10 +5395,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa0c492732e02945ba8e66ee41ca630, type: 3}
+  m_Script: {fileID: 11500000, guid: 01588ff3b16de654f930eaabbb5eb04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadedBackgroundGameObj: {fileID: 2099145864}
+  dragSensitivity: 3
 --- !u!1 &537358672
 GameObject:
   m_ObjectHideFlags: 0

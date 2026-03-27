@@ -45,9 +45,11 @@ public class NewCameraDrag : MonoBehaviour
         if (_isDragging)
         {
             Vector3 currentPointerPosition = GetPointerWorldPosition();
+
             float deltaX = (_lastPointerPosition.x - currentPointerPosition.x) * dragSensitivity;
 
             Vector3 newPosition = transform.position;
+
             newPosition.x += deltaX;
 
             newPosition.x = Mathf.Clamp(newPosition.x, _minX, _maxX);
