@@ -3,15 +3,23 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
+
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
 
+
+    [Header("Energy Regeneration")]
+    [SerializeField] private float energyTimer = 0f;
+    [SerializeField] private float energyInterval = 300f;
+
+
     //EVENTS
     public static event Action<float> OnCoinChanged;
     public static event Action<float> OnGoldBarsChanged;
-    public static event Action<float,float> OnEnergyChanged;
+    public static event Action<float, float> OnEnergyChanged;
 
+    [Header("Stats")]
     //CURRENCY
     [SerializeField] private float coins;
     [SerializeField] private float goldBars;
@@ -22,7 +30,6 @@ public class StatsManager : MonoBehaviour
     [SerializeField] private int energy;
     [SerializeField] private int maxEnergy = 10;
 
-    
     public HashSet<StallFoodData> purchasedFoods = new HashSet<StallFoodData>();
 
     void Awake()
@@ -59,6 +66,16 @@ public class StatsManager : MonoBehaviour
 
     private void Update()
     {
+
+        energyTimer += Time.deltaTime;
+
+        if (energyTimer >= energyInterval)
+        {
+            energyTimer -= energyInterval;
+            AddEnergy(1);
+        }
+
+
         if (!Mathf.Approximately(_previousCoins, coins))
         {
             OnCoinChanged?.Invoke(coins);
@@ -117,7 +134,7 @@ public class StatsManager : MonoBehaviour
 
     public void AddEnergy(int amount)
     {
-        energy += amount;
+        energy = Mathf.Min(energy + amount, maxEnergy);
         OnEnergyChanged?.Invoke(energy, maxEnergy);
     }
 
@@ -125,6 +142,7 @@ public class StatsManager : MonoBehaviour
     {
         energy = Mathf.Max(energy - amount, 0);
         OnEnergyChanged?.Invoke(energy, maxEnergy);
+        Debug.Log($"Spent {amount} energy. Current energy: {energy}/{maxEnergy}");
     }
 
     public bool TrySpendEnergy(int amount) // Returns true if energy was successfully spent, false if not enough energy
@@ -132,10 +150,10 @@ public class StatsManager : MonoBehaviour
         if (energy < amount)
             return false;
 
-        energy -= amount;
+        energy = Mathf.Max(energy - amount, 0);
         OnEnergyChanged?.Invoke(energy, maxEnergy);
         return true;
-    } 
+    }
 
     public int GetEnergy() => energy;
 

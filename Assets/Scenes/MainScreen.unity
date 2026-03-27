@@ -5399,7 +5399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadedBackgroundGameObj: {fileID: 2099145864}
-  dragSensitivity: 3
+  dragSensitivity: 5
 --- !u!1 &537358672
 GameObject:
   m_ObjectHideFlags: 0
@@ -5710,7 +5710,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584089822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78203feb058d281438c136d16392cbfd, type: 3}
   m_Name: 
@@ -8865,6 +8865,7 @@ GameObject:
   - component: {fileID: 897783316}
   - component: {fileID: 897783315}
   - component: {fileID: 897783314}
+  - component: {fileID: 897783317}
   m_Layer: 0
   m_Name: Stats Manager
   m_TagString: Untagged
@@ -8884,6 +8885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c19309f63b6a3948b4da3bc6bc39550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyTimer: 0
+  energyInterval: 300
   coins: 20000
   goldBars: 0
   energy: 10
@@ -8999,6 +9002,16 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 506b7c9c-b27d-4302-bbaf-6f7796fb9444
+    m_ActionName: 'Player/Drag[/Device Simulator Touchscreen/press,/Mouse/press,/Pen/press,/Device
+      Simulator Touchscreen/primaryTouch/tap,/Device Simulator Touchscreen/primaryTouch/press]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c6caf734-fcaf-4c24-b1c4-5bd7fb28b9f2
+    m_ActionName: 'Player/Mouse[/Mouse/press,/Pen/press,/Device Simulator Touchscreen/press,/Device
+      Simulator Touchscreen/primaryTouch/indirectTouch]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -9019,6 +9032,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897783317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897783313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51241f087e6d13e45aa62f0c1bf6499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsText: {fileID: 584089824}
+  energyText: {fileID: 1507459665}
 --- !u!1 &898316043
 GameObject:
   m_ObjectHideFlags: 0
@@ -14638,7 +14665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10/10
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a021b6abbdf892847b346f47dfc6f979, type: 2}
   m_sharedMaterial: {fileID: -8657803443374453213, guid: a021b6abbdf892847b346f47dfc6f979, type: 2}
@@ -20675,7 +20702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

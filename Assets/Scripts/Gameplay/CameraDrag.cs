@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.EventSystems;
 
 public class CameraDrag : MonoBehaviour
 {
@@ -12,6 +10,7 @@ public class CameraDrag : MonoBehaviour
 
     private Vector3 _origin;
     private Vector3 _difference;
+    private Vector2 _pointerPosition;
 
     private Camera _mainCamera;
 
@@ -22,11 +21,7 @@ public class CameraDrag : MonoBehaviour
 
     #endregion
 
-    private void Awake() 
-    {
-        _mainCamera = Camera.main;
-        EnhancedTouchSupport.Enable();
-    } 
+    private void Awake() => _mainCamera = Camera.main;
 
     private void Start()
     {
@@ -45,30 +40,30 @@ public class CameraDrag : MonoBehaviour
             new Vector3(maxX, maxY, 0.0f)
         );
     }
-    
+
     public void OnDrag(InputAction.CallbackContext ctx)
     {
         _inFocus = !shadedBackgroundGameObj.activeSelf;
-
-        if (ctx.started)
-            _origin = GetPointerPosition();
-
+        if (ctx.started) _origin = GetPointerPosition;
         _isDragging = ctx.started || ctx.performed;
+    }
 
-        if (ctx.canceled)
-            _isDragging = false;
+    public void DragProcess(InputAction.CallbackContext ctx)
+    {
+        _pointerPosition = ctx.ReadValue<Vector2>();
+        if (ctx.canceled) _pointerPosition = Vector2.zero;
     }
 
     private void LateUpdate()
     {
         if (!_isDragging || !_inFocus) return;
-        
-        _difference = GetPointerPosition() - transform.position;
-        
+
+        _difference = GetPointerPosition - transform.position;
+
         _targetPosition = _origin - _difference;
         _targetPosition = GetCameraBounds();
 
-        transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * 15f);
+        transform.position = _targetPosition;
     }
 
     private Vector3 GetCameraBounds()
@@ -80,19 +75,5 @@ public class CameraDrag : MonoBehaviour
         );
     }
 
-    private Vector3 GetPointerPosition()
-    {
-        Vector2 screenPos = Vector2.zero;
-
-        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
-        {
-            screenPos = Touchscreen.current.primaryTouch.position.ReadValue();
-        }
-        else if (Mouse.current != null && Mouse.current.leftButton.isPressed)
-        {
-            screenPos = Mouse.current.position.ReadValue();
-        }
-
-        return _mainCamera.ScreenToWorldPoint(screenPos);
-    }
+    private Vector3 GetPointerPosition => _mainCamera.ScreenToWorldPoint(_pointerPosition);
 }
