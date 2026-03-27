@@ -37,12 +37,12 @@ public class StatsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //Screen.SetResolution(540, 960, FullScreenMode.FullScreenWindow);
-        Screen.SetResolution(540, 960, FullScreenMode.Windowed);
-        float targetAspect = 540f / 960f;
-        float windowAspect = (float)Screen.width / Screen.height;
-        float scaleHeight = windowAspect / targetAspect;
+        // Screen.SetResolution(540, 960, FullScreenMode.Windowed);
+        // float targetAspect = 540f / 960f;
+        // float windowAspect = (float)Screen.width / Screen.height;
+        // float scaleHeight = windowAspect / targetAspect;
 
-        Camera.main.rect = new Rect(0, 0, 1, scaleHeight);
+        // Camera.main.rect = new Rect(0, 0, 1, scaleHeight);
     }
 
 
