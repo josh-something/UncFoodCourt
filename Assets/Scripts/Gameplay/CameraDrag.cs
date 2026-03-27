@@ -10,6 +10,7 @@ public class CameraDrag : MonoBehaviour
 
     private Vector3 _origin;
     private Vector3 _difference;
+    private Vector2 _pointerPosition;
 
     private Camera _mainCamera;
 
@@ -39,20 +40,26 @@ public class CameraDrag : MonoBehaviour
             new Vector3(maxX, maxY, 0.0f)
         );
     }
-    
+
     public void OnDrag(InputAction.CallbackContext ctx)
     {
         _inFocus = !shadedBackgroundGameObj.activeSelf;
-        if (ctx.started) _origin = GetMousePosition;
+        if (ctx.started) _origin = GetPointerPosition;
         _isDragging = ctx.started || ctx.performed;
+    }
+
+    public void DragProcess(InputAction.CallbackContext ctx)
+    {
+        _pointerPosition = ctx.ReadValue<Vector2>();
+        if (ctx.canceled) _pointerPosition = Vector2.zero;
     }
 
     private void LateUpdate()
     {
         if (!_isDragging || !_inFocus) return;
-        
-        _difference = GetMousePosition - transform.position;
-        
+
+        _difference = GetPointerPosition - transform.position;
+
         _targetPosition = _origin - _difference;
         _targetPosition = GetCameraBounds();
 
@@ -68,5 +75,5 @@ public class CameraDrag : MonoBehaviour
         );
     }
 
-    private Vector3 GetMousePosition => _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    private Vector3 GetPointerPosition => _mainCamera.ScreenToWorldPoint(_pointerPosition);
 }

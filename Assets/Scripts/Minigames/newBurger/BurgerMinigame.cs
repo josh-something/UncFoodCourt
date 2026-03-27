@@ -94,5 +94,6 @@ public class BurgerMiniGame : MonoBehaviour
 
         Debug.Log("Final Score: " + finalScore);
         MinigameManager.Instance.EndMinigame();
+        AudioManager.Instance.PlayMinigameFinish();
     }
 }

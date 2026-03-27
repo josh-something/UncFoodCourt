@@ -41,6 +41,14 @@ public class UIManager : MonoBehaviour
         {
             currentOpenPanel.SetActive(false);
         }
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("AudioManager is NULL!");
+        }
+        else
+        {
+            AudioManager.Instance.PlayClick();
+        }
         currentOpenPanel = panel;
         panel.SetActive(true);
         Time.timeScale = 0f;
@@ -58,6 +66,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         BackgroundOverlay.SetActive(false);
         InputLocked = false;
+        AudioManager.Instance.PlayClick();
     }
 
     public void OpenMinigamePanel(GameObject panel)
@@ -83,6 +92,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseMinigamePanel() // Call this to close whatever panel is currently open
     {
+        AudioManager.Instance.PlayClick();
         if (currentOpenPanel != null)
         {
             currentOpenPanel.SetActive(false);
@@ -96,6 +106,7 @@ public class UIManager : MonoBehaviour
 
         MinigameOverlay.SetActive(false);
         InputLocked = false;
+        
     }
 
 

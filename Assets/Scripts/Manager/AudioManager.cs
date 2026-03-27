@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip StallClickSFX;
     public AudioClip UpgradeSFX;
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {

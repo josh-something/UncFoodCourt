@@ -41,6 +41,7 @@ public class StallArea : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayStallClick();
         if (!isUnlocked)
         {
             StallUIManager.Instance.OpenUnlockPanel(this);

@@ -44,7 +44,7 @@ public class Customer : MonoBehaviour
             return;
         }
         Debug.Log("Customer bought from " + targetStall.name);
-
+        AudioManager.Instance.PlayCoin();
         Destroy(gameObject, 2f);
     }
 

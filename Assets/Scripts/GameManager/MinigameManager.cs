@@ -86,7 +86,9 @@ public class MinigameManager : MonoBehaviour
     public void EndMinigame()
     {
         //Time.timeScale = 0f;
+        AudioManager.Instance.PlayMinigameFinish();
         gameFinishedPanel.SetActive(true);
+        
     }
 
     private void DestroyMinigameInstances()

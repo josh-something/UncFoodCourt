@@ -198,7 +198,7 @@ public class StallUIManager : MonoBehaviour
     }
 
 
-    
+
     public void OnClickUpgrade() //Upgrade Button Clicked
     {
 
@@ -231,11 +231,11 @@ public class StallUIManager : MonoBehaviour
         //         stallSlots[i].StallWithFood(stall.assignedFood);
         //     }
         // }
-            UIManager.Instance.OpenPanel(stallListPanel);
+        UIManager.Instance.OpenPanel(stallListPanel);
 
         for (int i = 0; i < stallSlots.Length; i++)
         {
-            stallSlots[i].SetStall(stallList[i]); 
+            stallSlots[i].SetStall(stallList[i]);
         }
     }
 
@@ -246,11 +246,16 @@ public class StallUIManager : MonoBehaviour
 
     public void RestockPressed()
     {
-        if (currentStall == null || currentStall.assignedFood == null)
-        return;
+        AudioManager.Instance.PlayClick();
 
-        if (!StatsManager.Instance.TrySpendEnergy(1))
-        return;
+        if (currentStall == null || currentStall.assignedFood == null)
+            return;
+
+        if (!StatsManager.Instance.TrySpendEnergy(1)) // Attempt to spend 1 energy, returns false if not enough energy
+        {
+            Debug.Log("Not enough energy!");
+            return;
+        }
 
         UIManager.Instance.CloseCurrentPanel();
         Time.timeScale = 1f;
@@ -262,5 +267,5 @@ public class StallUIManager : MonoBehaviour
     {
         return currentStall;
     }
-     
+
 }

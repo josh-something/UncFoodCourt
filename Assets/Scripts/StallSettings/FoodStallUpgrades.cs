@@ -43,6 +43,16 @@ public class FoodStallUpgrades : MonoBehaviour
         {
             currentStock++;
         }
+
+        //sets restock button based on stock amount :) yay!!!
+        if (currentStock <= 3 && stallArea.assignedFood != null)
+        {
+            OnLowStock();
+        }
+        else if (currentStock >= 4 && stallArea.assignedFood != null)
+        {
+            OnHighStock();
+        }
     }
 
     public float CurrentMultiplier(int level)
@@ -102,6 +112,7 @@ public class FoodStallUpgrades : MonoBehaviour
 
         level++;
         Debug.Log("Upgraded to level " + level);
+        AudioManager.Instance.PlayUpgrade();
         return true;
 
     }
@@ -139,11 +150,6 @@ public class FoodStallUpgrades : MonoBehaviour
         StatsManager.Instance.AddCoins(income);
         popularityManager?.AddPopularity(2);
 
-        if (currentStock <= 3)
-        {
-            OnLowStock();
-        }
-
         Debug.Log("Order processed. Earned: " + income);
 
         return true;
@@ -152,7 +158,11 @@ public class FoodStallUpgrades : MonoBehaviour
     public void OnLowStock()
     {
         restockButton.SetActive(true);
+    }
 
+    public void OnHighStock()
+    {
+        restockButton.SetActive(false);
     }
 
 }
